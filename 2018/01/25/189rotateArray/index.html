@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="leetcode,算法," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题目原文Rotate an array of n elements to the right by k steps.For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,7,1,2,3,4]. Note:Try to come up as many solutions as you can,">
+<meta name="keywords" content="leetcode,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="189rotateArray">
+<meta property="og:url" content="https://hangyi.github.io/2018/01/25/189rotateArray/index.html">
+<meta property="og:site_name" content="Hangyi">
+<meta property="og:description" content="题目原文Rotate an array of n elements to the right by k steps.For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,7,1,2,3,4]. Note:Try to come up as many solutions as you can,">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-05T03:58:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="189rotateArray">
+<meta name="twitter:description" content="题目原文Rotate an array of n elements to the right by k steps.For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,7,1,2,3,4]. Note:Try to come up as many solutions as you can,">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://hangyi.github.io/2018/01/25/189rotateArray/"/>
+
+
+
+
+
+  <title>189rotateArray | Hangyi</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hangyi</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以大多数人的努力程度之低，根本轮不到拼天分。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hangyi.github.io/2018/01/25/189rotateArray/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hangyi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hangyi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">189rotateArray</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-25T23:43:20+08:00">
+                2018-01-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-05T11:58:04+08:00">
+                2018-02-05
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/25/189rotateArray/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/25/189rotateArray/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>题目原文<br>Rotate an array of n elements to the right by k steps.<br>For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,7,1,2,3,4].</p>
+<p>Note:<br>Try to come up as many solutions as you can, there are at least 3 different ways to solve this problem.</p>
+<p>题目翻译<br>向右旋转转一个有n个元素的数组k步。比如：n = 7，k = 3时，数组 [1,2,3,4,5,6,7] 可以得到 [5,6,7,1,2,3,4] 。<br>注：尽量用多种方法来解决这个问题。 </p>
+<a id="more"></a>
+<h2 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rotate</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        :rtype: void Do not return anything, modify nums in-place instead.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        n = len(nums)</span><br><span class="line">        list_1 = nums[-k:]</span><br><span class="line">        list_2 = nums[:n-k]</span><br><span class="line">        list_3 = list_1 + list_2</span><br><span class="line">        <span class="keyword">return</span> (list_3)</span><br></pre></td></tr></table></figure>
+<p>注意只能直接修改原数组，不能返回新的数组，修改必须是”in-place”的。</p>
+<p>v0.2</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">n = len(nums)</span><br><span class="line">      <span class="keyword">if</span> k == <span class="number">0</span>:</span><br><span class="line">          nums = nums</span><br><span class="line">      <span class="keyword">elif</span> k &gt; <span class="number">0</span> <span class="keyword">and</span> k &lt;= n:</span><br><span class="line">          list_1 = nums[-k:]</span><br><span class="line">          list_2 = nums[:n-k]</span><br><span class="line">          nums = list_1 + list_2 <span class="comment"># 这里错了，应该是nums[:]</span></span><br></pre></td></tr></table></figure>
+<p>This is not modifying nums in place. This is recreating a new list and reassigning the variable name of “nums” to it.</p>
+<p>两个列表相连</p>
+<ul>
+<li>用“+”， list_3 = list_1+ list_2   这个是新建了一个list</li>
+<li>用extend 这个是在原list对象上操作</li>
+</ul>
+<p>💡del不是nums.del(i)</p>
+<p>​     而是del nums[1]</p>
+<p>continue和break要在for,while等循环中使用,单独的if语句中不能使用break和continue. </p>
+<p>v0.3</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rotate</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        :rtype: void Do not return anything, modify nums in-place instead.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        n = len(nums)</span><br><span class="line">        <span class="keyword">if</span> k == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">continue</span>  <span class="comment"># 这里报错 'continue' not properly in loop</span></span><br><span class="line">        <span class="keyword">elif</span> k &gt; <span class="number">0</span> <span class="keyword">and</span> k &lt;= n:</span><br><span class="line">            list_1 = nums[:n-k]</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(n-k):</span><br><span class="line">                <span class="keyword">del</span> nums[i]</span><br><span class="line">            nums.extend(list_1)</span><br><span class="line">            <span class="keyword">return</span> nums</span><br></pre></td></tr></table></figure>
+<p>v0.4</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rotate</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">		n = len(nums)</span><br><span class="line">        <span class="keyword">if</span> k == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">elif</span> k &gt; <span class="number">0</span> <span class="keyword">and</span> k &lt;= n:</span><br><span class="line">            list_1 = nums[:n-k]</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(n-k):</span><br><span class="line">                <span class="keyword">del</span> nums[i] <span class="comment"># 问题出在这</span></span><br><span class="line">            print(nums)</span><br><span class="line">            nums.extend(list_1)</span><br><span class="line">            <span class="keyword">return</span> nums</span><br></pre></td></tr></table></figure>
+<p>Line 14: IndexError: list assignment index out of range</p>
+<p>v1.0</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rotate</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :type k: int</span></span><br><span class="line"><span class="string">    :rtype: void Do not return anything, modify nums in-place instead.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    n = len(nums)</span><br><span class="line">    <span class="keyword">if</span> k == <span class="number">0</span> :</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">elif</span> k &gt; <span class="number">0</span> <span class="keyword">and</span> k &lt;= n:</span><br><span class="line">        list_1 = nums[:n-k]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums[:n-k]:</span><br><span class="line">            nums.remove(i)</span><br><span class="line">        nums.extend(list_1)</span><br><span class="line">    <span class="keyword">elif</span> k &gt; n:</span><br><span class="line">        l = k % n</span><br><span class="line">        list_1 = nums[:n-l]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums[:n-l]:</span><br><span class="line">            nums.remove(i)</span><br><span class="line">        nums.extend(list_1)</span><br></pre></td></tr></table></figure>
+<p><code>if</code>后面如果想什么也不做，可以用<code>pass</code>，后面看讨论知道，可以直接写个return，不返回任何值</p>
+<p>我只想到这一种方法。</p>
+<h2 id="思路一"><a href="#思路一" class="headerlink" title="思路一"></a>思路一</h2><p>v1.1 讨论区里的答案，看完瞬间觉得自己好笨，我的想法不就是这个吗</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">n = len(nums)</span><br><span class="line">       k = k % n</span><br><span class="line">       nums[:] = nums[n-k:] + nums[:n-k]</span><br></pre></td></tr></table></figure>
+<p> list.insert(index, obj)  </p>
+<h2 id="思路二"><a href="#思路二" class="headerlink" title="思路二"></a>思路二</h2><p>5.61%</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">	nums.insert(<span class="number">0</span>, nums.pop())</span><br></pre></td></tr></table></figure>
+<h2 id="思路三"><a href="#思路三" class="headerlink" title="思路三"></a>思路三</h2><p>切片</p>
+<p>-3 % 5 = 2  </p>
+<p>74%</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">n = len(nums)</span><br><span class="line">k = k % n</span><br><span class="line">nums[:] = nums[n-k:] + nums[:n-k]</span><br><span class="line"><span class="comment"># nums[:] = nums[-k:] + nums[:-k]</span></span><br></pre></td></tr></table></figure>
+<p>这里有一点值得注意</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nums<span class="string">[:]</span> = nums<span class="string">[n-k:]</span> + nums<span class="string">[:n-k]</span></span><br></pre></td></tr></table></figure>
+<p>不能写成这样</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nums = nums[n-<span class="symbol">k:</span>] + nums[<span class="symbol">:n-k</span>]</span><br></pre></td></tr></table></figure>
+<p>前者能真正改变原来的nums，但后者仅仅能改变改变对一个新nums的引用，不是改变原来nums的值</p>
+<p>可参考《Python编程》P58</p>
+<h2 id="思路四"><a href="#思路四" class="headerlink" title="思路四"></a>思路四</h2><p>Let the array be - 123456789 and k = 4</p>
+<p><em>Step 1</em> - <strong>12345</strong> 6789 —&gt; <strong>54321</strong> 6789</p>
+<p><em>Step 2</em> - 54321 <strong>6789</strong> —&gt; 54321 <strong>9876</strong></p>
+<p><em>Step 3</em> - <strong>543219876</strong> —&gt; <strong>678912345</strong></p>
+<h2 id="Classical-3-step-array-rotation"><a href="#Classical-3-step-array-rotation" class="headerlink" title="Classical 3-step array rotation:"></a><strong>Classical 3-step array rotation:</strong></h2><blockquote>
+<ol>
+<li>reverse the first n - k elements</li>
+<li>reverse the rest of them</li>
+<li>reverse the entire array</li>
+</ol>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rotate</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> k <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> k &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        k, end = k % len(nums), len(nums) - <span class="number">1</span></span><br><span class="line">        self.reverse(nums, <span class="number">0</span>, end - k)</span><br><span class="line">        self.reverse(nums, end - k + <span class="number">1</span>, end)</span><br><span class="line">        self.reverse(nums, <span class="number">0</span>, end)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverse</span><span class="params">(self, nums, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">while</span> start &lt; end:</span><br><span class="line">            nums[start], nums[end] = nums[end], nums[start]</span><br><span class="line">            start, end = start + <span class="number">1</span>, end - <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>这里有个知识点我不清楚，就是一个类中一个函数可以调用另一个函数吗，怎么调用</p>
+<h2 id="思路五"><a href="#思路五" class="headerlink" title="思路五"></a>思路五</h2><p>实际上，为了使空间复杂度为O(1)，我们可能会想到对原数组做k次“循环右移一位”的解法。然而直接这么做会超时，所以可以考虑下面的优化做法。其思想是，每次把数组最后k位交换到正确的位置，循环直到所有元素位置正确。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rotate</span><span class="params">(self, nums, k)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type nums: List[int]</span></span><br><span class="line"><span class="string">    :type k: int</span></span><br><span class="line"><span class="string">    :rtype: void Do not return anything, modify nums in-place instead.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    k, start, n = k % len(nums), <span class="number">0</span>, len(nums)</span><br><span class="line">    <span class="keyword">while</span> k % n != <span class="number">0</span> <span class="keyword">and</span> n &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(k):</span><br><span class="line">            nums[start + i], nums[len(nums)-k+i] = nums[len(nums)-k+i], nums[start+i]</span><br><span class="line">        start, n = start + k, n - k</span><br><span class="line">        k = k % n</span><br></pre></td></tr></table></figure>
+<h2 id="如果下次碰到这个题目应该怎么思考"><a href="#如果下次碰到这个题目应该怎么思考" class="headerlink" title="如果下次碰到这个题目应该怎么思考"></a>如果下次碰到这个题目应该怎么思考</h2><ol>
+<li>直接brute force, 怎么简单怎么来，就是看到这个第一反应</li>
+<li>然后写出后，分析它的算法和空间复杂度</li>
+<li>然后优化，查找类的可以用字典来代替（优化的套路应该是有限的，只不过自己现在刚起步，碰到少）</li>
+<li>最后想想有没有别的思路，如正反思考</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/05/爬虫使用cookie免登陆/" rel="prev" title="爬虫使用cookie免登陆">
+                <i class="fa fa-chevron-left"></i> 爬虫使用cookie免登陆
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/21/Python3和Python2的区别/" rel="next" title="Python3和Python2的区别">
+                Python3和Python2的区别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Hangyi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Hangyi" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:sweat0909@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解题过程"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x89E3;&#x9898;&#x8FC7;&#x7A0B;" class="headerlink" title="&#x89E3;&#x9898;&#x8FC7;&#x7A0B;"></a>&#x89E3;&#x9898;&#x8FC7;&#x7A0B;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路一"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x601D;&#x8DEF;&#x4E00;" class="headerlink" title="&#x601D;&#x8DEF;&#x4E00;"></a>&#x601D;&#x8DEF;&#x4E00;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路二"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x601D;&#x8DEF;&#x4E8C;" class="headerlink" title="&#x601D;&#x8DEF;&#x4E8C;"></a>&#x601D;&#x8DEF;&#x4E8C;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路三"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x601D;&#x8DEF;&#x4E09;" class="headerlink" title="&#x601D;&#x8DEF;&#x4E09;"></a>&#x601D;&#x8DEF;&#x4E09;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路四"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x601D;&#x8DEF;&#x56DB;" class="headerlink" title="&#x601D;&#x8DEF;&#x56DB;"></a>&#x601D;&#x8DEF;&#x56DB;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Classical-3-step-array-rotation"><span class="nav-number">6.</span> <span class="nav-text"><a href="#Classical-3-step-array-rotation" class="headerlink" title="Classical 3-step array rotation:"></a><strong>Classical 3-step array rotation:</strong></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路五"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x601D;&#x8DEF;&#x4E94;" class="headerlink" title="&#x601D;&#x8DEF;&#x4E94;"></a>&#x601D;&#x8DEF;&#x4E94;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果下次碰到这个题目应该怎么思考"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x5982;&#x679C;&#x4E0B;&#x6B21;&#x78B0;&#x5230;&#x8FD9;&#x4E2A;&#x9898;&#x76EE;&#x5E94;&#x8BE5;&#x600E;&#x4E48;&#x601D;&#x8003;" class="headerlink" title="&#x5982;&#x679C;&#x4E0B;&#x6B21;&#x78B0;&#x5230;&#x8FD9;&#x4E2A;&#x9898;&#x76EE;&#x5E94;&#x8BE5;&#x600E;&#x4E48;&#x601D;&#x8003;"></a>&#x5982;&#x679C;&#x4E0B;&#x6B21;&#x78B0;&#x5230;&#x8FD9;&#x4E2A;&#x9898;&#x76EE;&#x5E94;&#x8BE5;&#x600E;&#x4E48;&#x601D;&#x8003;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hangyi</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">21.0k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://hangyi.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://hangyi.github.io/2018/01/25/189rotateArray/';
+          this.page.identifier = '2018/01/25/189rotateArray/';
+          this.page.title = '189rotateArray';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://hangyi.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

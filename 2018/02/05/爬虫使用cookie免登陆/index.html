@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python,爬虫," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="由于前程无忧上岗位投递记录只保留两个月，想记录下。 由于之前写过一个爬工作岗位的爬虫，所以这次我就拿之前的代码，改了下，发现爬不到东西。一番折腾后，发现。爬虫下载网页，获取登陆是不会记住你浏览器的登陆状态的，就相当于，在一个新的，从未登陆过该网站的浏览器上下载页面，而我需要的页面是登陆后的页面。">
+<meta name="keywords" content="Python,爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爬虫使用cookie免登陆">
+<meta property="og:url" content="https://hangyi.github.io/2018/02/05/爬虫使用cookie免登陆/index.html">
+<meta property="og:site_name" content="Hangyi">
+<meta property="og:description" content="由于前程无忧上岗位投递记录只保留两个月，想记录下。 由于之前写过一个爬工作岗位的爬虫，所以这次我就拿之前的代码，改了下，发现爬不到东西。一番折腾后，发现。爬虫下载网页，获取登陆是不会记住你浏览器的登陆状态的，就相当于，在一个新的，从未登陆过该网站的浏览器上下载页面，而我需要的页面是登陆后的页面。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://hangyi.github.io/img/2018-02-05-爬虫使用cookie免登陆-pic1.jpg">
+<meta property="og:updated_time" content="2018-02-05T03:57:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="爬虫使用cookie免登陆">
+<meta name="twitter:description" content="由于前程无忧上岗位投递记录只保留两个月，想记录下。 由于之前写过一个爬工作岗位的爬虫，所以这次我就拿之前的代码，改了下，发现爬不到东西。一番折腾后，发现。爬虫下载网页，获取登陆是不会记住你浏览器的登陆状态的，就相当于，在一个新的，从未登陆过该网站的浏览器上下载页面，而我需要的页面是登陆后的页面。">
+<meta name="twitter:image" content="https://hangyi.github.io/img/2018-02-05-爬虫使用cookie免登陆-pic1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://hangyi.github.io/2018/02/05/爬虫使用cookie免登陆/"/>
+
+
+
+
+
+  <title>爬虫使用cookie免登陆 | Hangyi</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hangyi</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以大多数人的努力程度之低，根本轮不到拼天分。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hangyi.github.io/2018/02/05/爬虫使用cookie免登陆/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hangyi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hangyi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">爬虫使用cookie免登陆</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-05T09:52:55+08:00">
+                2018-02-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-05T11:57:33+08:00">
+                2018-02-05
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/05/爬虫使用cookie免登陆/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/02/05/爬虫使用cookie免登陆/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>由于前程无忧上岗位投递记录只保留两个月，想记录下。</p>
+<p>由于之前写过一个爬工作岗位的爬虫，所以这次我就拿之前的代码，改了下，发现爬不到东西。一番折腾后，发现。爬虫下载网页，获取登陆是不会记住你浏览器的登陆状态的，就相当于，在一个新的，从未登陆过该网站的浏览器上下载页面，而我需要的页面是登陆后的页面。</p>
+<a id="more"></a>
+<p>程序代码放在<a href="https://github.com/Hangyi/some_scripts/tree/master/002.%20get_job_applied" target="_blank" rel="noopener">Github</a></p>
+<p>对于怎么获取登陆后的页面，有两种思路</p>
+<ol>
+<li><p>使用账号，密码登陆，如果该网站登陆系统简单的话，没有验证码啥的，有验证码的话，可以使用图形识别库</p>
+</li>
+<li><p>使用cookie绕过登陆页面</p>
+<blockquote>
+<p>cookie:</p>
+<p><strong>Cookie</strong>（复数形态Cookies），中文名称为“小型文本文件”或“小甜饼”<a href="https://zh.wikipedia.org/wiki/Cookie#cite_note-1" target="_blank" rel="noopener">[1]</a>，指某些<a href="https://zh.wikipedia.org/wiki/%E7%BD%91%E7%AB%99" target="_blank" rel="noopener">网站</a>为了辨别用户身份而储存在用户本地终端（Client Side）上的数据（通常经过<a href="https://zh.wikipedia.org/wiki/%E5%8A%A0%E5%AF%86" target="_blank" rel="noopener">加密</a>）。定义于<a href="https://zh.wikipedia.org/wiki/RFC" target="_blank" rel="noopener">RFC</a>2109。是<a href="https://zh.wikipedia.org/wiki/%E7%BD%91%E6%99%AF%E5%85%AC%E5%8F%B8" target="_blank" rel="noopener">网景公司</a>的前雇员<a href="https://zh.wikipedia.org/wiki/%E7%9B%A7%C2%B7%E8%92%99%E7%89%B9%E5%88%A9" target="_blank" rel="noopener">卢·蒙特利</a>在1993年3月的发明<a href="https://zh.wikipedia.org/wiki/Cookie#cite_note-2" target="_blank" rel="noopener">[2]</a>。</p>
+<p>因为HTTP协议是无状态的，即服务器不知道用户上一次做了什么，这严重阻碍了交互式Web应用程序的实现。在典型的网上购物场景中，用户浏览了几个页面，买了一盒饼干和两瓶饮料。最后结帐时，由于HTTP的无状态性，不通过额外的手段，服务器并不知道用户到底买了什么，所以Cookie就是用来绕开HTTP的无状态性的“额外手段”之一。服务器可以设置或读取Cookies中包含信息，借此维护用户跟服务器会话中的状态。</p>
+<p>by wikipedia</p>
+</blockquote>
+</li>
+</ol>
+<p>我打算写的是小工具，为了方便起见直接用使用cookie的方式。</p>
+<h2 id="期间遇到的坑"><a href="#期间遇到的坑" class="headerlink" title="期间遇到的坑"></a>期间遇到的坑</h2><ol>
+<li><h3 id="解析网页"><a href="#解析网页" class="headerlink" title="解析网页"></a>解析网页</h3><p>在写程序的过程中，关于BeautifulSoup, requests，urlopen几个的作用有点糊涂，在这遍整理下</p>
+<h4 id="BeautifulSoup官方解释"><a href="#BeautifulSoup官方解释" class="headerlink" title="BeautifulSoup官方解释"></a>BeautifulSoup官方解释</h4><blockquote>
+<p>Beautiful Soup提供一些简单的、python式的函数用来处理导航、搜索、修改分析树等功能。它是一个工具箱，通过解析文档为用户提供需要抓取的数据，因为简单，所以不需要多少代码就可以写出一个完整的应用程序。<br>Beautiful Soup自动将输入文档转换为Unicode编码，输出文档转换为utf-8编码。你不需要考虑编码方式，除非文档没有指定一个编码方式，这时，Beautiful Soup就不能自动识别编码方式了。然后，你仅仅需要说明一下原始编码方式就可以了。<br>Beautiful Soup已成为和lxml、html6lib一样出色的python解释器，为用户灵活地提供不同的解析策略或强劲的速度。</p>
+</blockquote>
+<h4 id="requests文档里的解释"><a href="#requests文档里的解释" class="headerlink" title="requests文档里的解释"></a>requests文档里的解释</h4><blockquote>
+<p>Requests 是 <strong>Python HTTP 库</strong>，</p>
+<p>Requests 允许你发送的 HTTP/1.1 请求，无需手工劳动。你不需要手动为 URL 添加查询字串，也不需要对 POST 数据进行表单编码。Keep-alive 和 HTTP 连接池的功能是 100% 自动化的，一切动力都来自于根植在Requests 内部的 <a href="https://github.com/shazow/urllib3" target="_blank" rel="noopener">urllib3</a>。</p>
+</blockquote>
+<h4 id="urlopen"><a href="#urlopen" class="headerlink" title="urlopen"></a>urlopen</h4><p><code>urlopen</code>是urllib(<em>urllib</em>提供了一系列用于操作URL的功能)里的一个方法，执行<code>urlopen</code>方法之后，返回一个<code>response</code>对象，返回信息便保存在这里面</p>
+</li>
+<li><h3 id="使用cookie绕过登陆"><a href="#使用cookie绕过登陆" class="headerlink" title="使用cookie绕过登陆"></a>使用cookie绕过登陆</h3><p>####cookie</p>
+<p>可以使用抓包软件来获取cookie，mac端用charles，windows可以用fiddler，当然也可以直接用Chrome的开发者工具</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cookie = &#123;key: value&#125; <span class="comment"># 这里写获取到的cookie，使用键值对的格式</span></span><br><span class="line">s = requests.get(url, cookies = cookie) <span class="comment"># 返回的是Response 对象</span></span><br><span class="line">s.encoding=<span class="string">'gbk'</span>  <span class="comment"># 由于51的网页编码是gbk，转码防止乱码</span></span><br><span class="line">page = s.text     <span class="comment"># 读取服务器响应的内容，requests获得的是requests对象</span></span><br></pre></td></tr></table></figure>
+<p>我这里碰到的坑是，自己想着完美主义，想cookie设置一遍就好，换下一页时，不用在设置。我需要爬多个网页，但自己cookie只设置了第一个网页，换了下一页的网址后，使用正则获取不到我要的东西，当时很奇怪，排查了很久，后来发现是cookie设置的问题。后来我在requests文档看到会话对象，就以为这个可以解决了我的问题。就匆匆用上了，却发现还是不行，在看文档发现，人家早就在后面写了。</p>
+</li>
+</ol>
+<blockquote>
+<p>会话对象让你能够跨请求(请求是指get,post,delete,put等)保持某些参数。它也会在同一个 Session 实例发出的<strong>所有请求之间</strong>（不是在程序中）保持 cookie， 期间使用 <code>urllib3</code> 的 <a href="http://urllib3.readthedocs.io/en/latest/reference/index.html#module-urllib3.connectionpool" target="_blank" rel="noopener">connection pooling</a> 功能。所以如果你向同一主机发送多个请求，底层的 TCP 连接将会被重用，从而带来显著的性能提升</p>
+<p>不过需要注意，就算使用了会话，方法级别的参数也不会被跨请求保持。下面的例子只会和第一个请求发送 cookie ，而非第二个</p>
+   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;    s = requests.Session()</span><br><span class="line">&gt;</span><br><span class="line">&gt;    r = s.get(<span class="string">'http://httpbin.org/cookies'</span>, cookies=&#123;<span class="string">'from-my'</span>: <span class="string">'browser'</span>&#125;)</span><br><span class="line">&gt;    print(r.text)</span><br><span class="line">&gt;    <span class="comment"># '&#123;"cookies": &#123;"from-my": "browser"&#125;&#125;'</span></span><br><span class="line">&gt;</span><br><span class="line">&gt;    r = s.get(<span class="string">'http://httpbin.org/cookies'</span>)</span><br><span class="line">&gt;    print(r.text)</span><br><span class="line">&gt;    <span class="comment"># '&#123;"cookies": &#123;&#125;&#125;'</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>后来，就直接在每个<code>requests.get()</code>里加一个cookie参数。纠结好久，就是为了<code>requests.get()</code>少写一个参数，太不值了。</p>
+<p>CookieJar就是一个cookie文件,在其他语言中就是实现保存cookie的包。</p>
+<p>如果想只设置一遍的话可以使用<code>scrapy</code>框架，里面有解决方案</p>
+<h4 id="requests-get-返回的是什么"><a href="#requests-get-返回的是什么" class="headerlink" title="requests.get()返回的是什么"></a><code>requests.get()</code>返回的是什么</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_current_info</span><span class="params">()</span>:</span></span><br><span class="line">    url = <span class="string">"http://www.baidu.com"</span></span><br><span class="line">    page = requests.get(url)</span><br><span class="line">    <span class="comment"># page.encoding = 'gbk'</span></span><br><span class="line">    print(page)</span><br><span class="line"></span><br><span class="line">get_current_info()</span><br><span class="line">&gt;&gt;&gt;&lt;Response [<span class="number">200</span>]&gt;</span><br><span class="line">[Finished <span class="keyword">in</span> <span class="number">0.4</span>s]</span><br></pre></td></tr></table></figure>
+<h4 id="headers设置"><a href="#headers设置" class="headerlink" title="headers设置"></a>headers设置</h4><p>很多网站禁止了类似python的爬虫，所以需要模拟浏览器浏览，有的网站更是需要登陆才能浏览。</p>
+<p>模拟浏览器主要是增加一个headers，在chrome浏览器上按下<code>f12</code>，就可以看到如下的headers信息。</p>
+<p>假设不自己加入headers信息中的User-Agent。python代码登录时会默认使用User-Agent: Python-urllib/3.4</p>
+<p>我们在chrome浏览器中按F12审查元素 &gt; Network &gt; Headers中能够看到User-Agent应该设置为：’Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36’</p>
+<p>一般要加入的headers信息有：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Host'</span>: <span class="string">''</span>, <span class="string">'Accept'</span>: <span class="string">''</span>, <span class="string">'User-Agent'</span>: <span class="string">''</span>, <span class="string">'Accept-Language'</span>: <span class="string">''</span>， Accept-Encoding</span><br></pre></td></tr></table></figure>
+<ol>
+<li><h3 id="正则获取"><a href="#正则获取" class="headerlink" title="正则获取"></a>正则获取</h3></li>
+</ol>
+<p>要获取的是职位，薪资，公司名，地点。网页结构如下：</p>
+<p><img src="/img/2018-02-05-爬虫使用cookie免登陆-pic1.jpg" alt=""></p>
+<p>起初写的正则是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg = re.compile(<span class="string">r'class="li l1"&gt;.*? target="_blank" title="(.*?)"&lt;/a&gt; &lt;span class="xz" title="(.*?)".*? title="(.*?)".*? &lt;span class="dq" title="(.*?)".*?&lt;/span&gt;'</span>,re.S)</span><br></pre></td></tr></table></figure>
+<p>圆括号分组匹配使得findall返回元组，元组中，几对圆括号就有几个元素，保留空匹配。</p>
+<p>但是每次都是返回空列表。</p>
+<p>然后删掉就可以匹配了</p>
+<ul>
+<li>不删掉，返回的是空，还有程序运行的时间特别长，意味着程序没找到相应的字符<ul>
+<li>为什么会找不到</li>
+</ul>
+</li>
+</ul>
+<p>最后排查的时发现 和<span>之间应该用东西，但是我不知道是什么，百度谷歌啥的也都搜不到，也问了伟哥，后来突然想到，既然想知道他们之间有啥东西，那为什么不直接打印出来呢？<code>(.*?)</code>，前面的不就是使用<code>(.*?)</code>来打印职位等信息的啊。</span></p>
+<blockquote>
+<p>既然都用到了用（.*?）打印，那为什么不打印<code>&lt;/a&gt;</code>与<span>之间的东西</span></p>
+<p>惰性思维，一遇到问题就想着搜索，网上有没有现成的解决方法，却不去自动思考下，尝试去解决问题。后来想到通过打印的方法，是因为在网上找不到相应的解决方法，没办法，只能自己解决了。</p>
+</blockquote>
+<p>打印出来发现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'\r\n                                '</span>  <span class="comment"># \r\n是回车换行符</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Unix系统里，每行结尾只有”&lt;换行&gt;”，即”\n”；Windows系统里面，每行结尾是”&lt;回车&gt;&lt;换行&gt;”，即”\r\n”；Mac系统里，每行结尾是”&lt;回车&gt;”。一个直接后果是，Unix/Mac系统下的文件在Windows里打开的话，所有文字会变成一行；而Windows里的文件在Unix/Mac下打开的话，在每行的结尾可能会多出一个^M符号。</p>
+<p><a href="http://www.ruanyifeng.com/blog/2006/04/post_213.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2006/04/post_213.html</a></p>
+</blockquote>
+<p><strong>正则匹配错误 expected string or bytes-like object是为什么</strong></p>
+<p>正则是用来匹配字符串的<br>如果你用来匹配其它对象，如整数就会出现上述错误</p>
+<p><strong>正则表达式修饰符 - 可选标志</strong></p>
+<p>正则表达式可以包含一些可选标志修饰符来控制匹配的模式。修饰符被指定为一个可选的标志。多个标志可以通过按位 OR(|) 它们来指定。</p>
+<p><code>re.S</code> 使 . 匹配包括换行在内的所有字符</p>
+<p>re.M、re.MULTILINE</p>
+<p><code>^</code>和<code>$</code>分别匹配目标字符串中行的起始和结尾，而不是严格匹配整个字符串本身的起始 和结尾</p>
+<p>re.S、rer.DOTALL</p>
+<p>“.”（点号）通常匹配除了<code>\n</code>（换行符）之外的所有单个字符；该标记表示“.”（点号） 能够匹配全部字符</p>
+<p>匹配包括换行符在内的任意字符，以下为正确的正则表达式匹配规则：<br>(<code>[\s\S]*</code>)<br>同时，也可以用 “(<code>[\d\D]*</code>)”、“(<code>[\w\W]*</code>)” 来表示。 </p>
+<h2 id="经验教训"><a href="#经验教训" class="headerlink" title="经验教训"></a>经验教训</h2><ul>
+<li><p>碰到需要自己写程序解决问题时，可以完成任务为目的，不过过程怎么，首先得把程序写出来，至于优化，完美，效率这些问题可以在写完之后在重构，查资料完善它。不然会陷入时间黑洞，背离初衷。</p>
+</li>
+<li><p>其实也和自己掌握的知识比较浅，有种坐井观天的感觉，只能窥一斑但不能见全貌。知识的系统性，然后经验也很重要，多读多写。</p>
+</li>
+<li><p>解决问题的步骤</p>
+<ol>
+<li><p>确定问题，我的问题是什么？</p>
+</li>
+<li><p>什么导致了这个问题，为什么会产生这个问题？</p>
+</li>
+<li><p>怎么解决问题？</p>
+</li>
+<li><p>自己尝试无果后，尝试在搜索引擎搜索，建议多换几个关键词，使用google，中文/英文，如果是框架，函数问题，可以查文档</p>
+</li>
+<li><p>询问有经验的人 </p>
+</li>
+<li><p>一切无果后，先归档，然后问问自己有没有别的解决方案</p>
+</li>
+<li><p>解决后，反思是缺少知识，还是粗心考虑不周等原因，缺啥补啥。</p>
+<p>如果知识点问题，记下笔记，防止下次遇坑。经验就是这么来的</p>
+</li>
+<li><p>其中要注意的点，是要给寻找答案的过程中，设立时间盒，比如规定半小时内解决，如果解决不了先放一放，不然会成为时间黑洞，时间一下子就全耗进去了</p>
+<p>​</p>
+</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/25/189rotateArray/" rel="next" title="189rotateArray">
+                189rotateArray <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Hangyi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Hangyi" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:sweat0909@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#期间遇到的坑"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x671F;&#x95F4;&#x9047;&#x5230;&#x7684;&#x5751;" class="headerlink" title="&#x671F;&#x95F4;&#x9047;&#x5230;&#x7684;&#x5751;"></a>&#x671F;&#x95F4;&#x9047;&#x5230;&#x7684;&#x5751;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解析网页"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x89E3;&#x6790;&#x7F51;&#x9875;" class="headerlink" title="&#x89E3;&#x6790;&#x7F51;&#x9875;"></a>&#x89E3;&#x6790;&#x7F51;&#x9875;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BeautifulSoup官方解释"><span class="nav-number">1.1.1.</span> <span class="nav-text"><a href="#BeautifulSoup&#x5B98;&#x65B9;&#x89E3;&#x91CA;" class="headerlink" title="BeautifulSoup&#x5B98;&#x65B9;&#x89E3;&#x91CA;"></a>BeautifulSoup&#x5B98;&#x65B9;&#x89E3;&#x91CA;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#requests文档里的解释"><span class="nav-number">1.1.2.</span> <span class="nav-text"><a href="#requests&#x6587;&#x6863;&#x91CC;&#x7684;&#x89E3;&#x91CA;" class="headerlink" title="requests&#x6587;&#x6863;&#x91CC;&#x7684;&#x89E3;&#x91CA;"></a>requests&#x6587;&#x6863;&#x91CC;&#x7684;&#x89E3;&#x91CA;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#urlopen"><span class="nav-number">1.1.3.</span> <span class="nav-text"><a href="#urlopen" class="headerlink" title="urlopen"></a>urlopen</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用cookie绕过登陆"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;cookie&#x7ED5;&#x8FC7;&#x767B;&#x9646;" class="headerlink" title="&#x4F7F;&#x7528;cookie&#x7ED5;&#x8FC7;&#x767B;&#x9646;"></a>&#x4F7F;&#x7528;cookie&#x7ED5;&#x8FC7;&#x767B;&#x9646;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#requests-get-返回的是什么"><span class="nav-number">1.2.1.</span> <span class="nav-text"><a href="#requests-get-&#x8FD4;&#x56DE;&#x7684;&#x662F;&#x4EC0;&#x4E48;" class="headerlink" title="requests.get()&#x8FD4;&#x56DE;&#x7684;&#x662F;&#x4EC0;&#x4E48;"></a><code>requests.get()</code>&#x8FD4;&#x56DE;&#x7684;&#x662F;&#x4EC0;&#x4E48;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#headers设置"><span class="nav-number">1.2.2.</span> <span class="nav-text"><a href="#headers&#x8BBE;&#x7F6E;" class="headerlink" title="headers&#x8BBE;&#x7F6E;"></a>headers&#x8BBE;&#x7F6E;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则获取"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x6B63;&#x5219;&#x83B7;&#x53D6;" class="headerlink" title="&#x6B63;&#x5219;&#x83B7;&#x53D6;"></a>&#x6B63;&#x5219;&#x83B7;&#x53D6;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经验教训"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x7ECF;&#x9A8C;&#x6559;&#x8BAD;" class="headerlink" title="&#x7ECF;&#x9A8C;&#x6559;&#x8BAD;"></a>&#x7ECF;&#x9A8C;&#x6559;&#x8BAD;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hangyi</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">21.0k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://hangyi.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://hangyi.github.io/2018/02/05/爬虫使用cookie免登陆/';
+          this.page.identifier = '2018/02/05/爬虫使用cookie免登陆/';
+          this.page.title = '爬虫使用cookie免登陆';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://hangyi.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

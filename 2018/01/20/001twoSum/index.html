@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="leetcode,算法," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="题目Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same">
+<meta name="keywords" content="leetcode,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="001TwoSum">
+<meta property="og:url" content="https://hangyi.github.io/2018/01/20/001twoSum/index.html">
+<meta property="og:site_name" content="Hangyi">
+<meta property="og:description" content="题目Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-25T15:45:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="001TwoSum">
+<meta name="twitter:description" content="题目Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://hangyi.github.io/2018/01/20/001twoSum/"/>
+
+
+
+
+
+  <title>001TwoSum | Hangyi</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hangyi</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以大多数人的努力程度之低，根本轮不到拼天分。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hangyi.github.io/2018/01/20/001twoSum/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hangyi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hangyi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">001TwoSum</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-20T05:07:23+08:00">
+                2018-01-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-25T23:45:48+08:00">
+                2018-01-25
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/20/001twoSum/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/01/20/001twoSum/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given an array of integers, return <strong>indices</strong> of the two numbers such that they add up to a specific target.</p>
+<p>You may assume that each input would have <strong>exactly</strong> one solution, and you may not use the <em>same</em> element twice.</p>
+<a id="more"></a>
+<p><strong>Example:</strong></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Given nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>], target = <span class="number">9</span>,</span><br><span class="line"></span><br><span class="line">Because nums[<span class="number">0</span>] + nums[<span class="number">1</span>] = <span class="number">2</span> + <span class="number">7</span> = <span class="number">9</span>,</span><br><span class="line">return [<span class="number">0</span>, <span class="number">1</span>].</span><br></pre></td></tr></table></figure>
+<p>给一个数组，返回两个数的索引，这两个数之和得和目标数相等。</p>
+<p>你可以需要假设<strong>每个输入只有确切的一个结果</strong>，并且你不可使用相同的元素两次</p>
+<h2 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h2><p><strong>v0.1</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> nums:</span><br><span class="line">                <span class="keyword">if</span>(nums[i] + nums[j] == target):</span><br><span class="line">                    <span class="keyword">return</span>[i, j]</span><br></pre></td></tr></table></figure>
+<p>这里其实想法是对的，但<code>for i in nums</code>这是对列表的每一项遍历，是值，不是索引</p>
+<p><strong>v0.2</strong> 只能找到第一对 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, nums, target)</span>:</span>  </span><br><span class="line">   <span class="keyword">if</span> nums:</span><br><span class="line">       n = len(nums)</span><br><span class="line">       length_list = list(range(<span class="number">0</span>, n+<span class="number">1</span>))</span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> length_list[:(n<span class="number">-2</span>)]:</span><br><span class="line">           <span class="keyword">for</span> j <span class="keyword">in</span> length_list[(i+<span class="number">1</span>):]:</span><br><span class="line">               <span class="keyword">if</span>(nums[i] + nums[j] == target):</span><br><span class="line">                   <span class="keyword">return</span>[i, j]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其实这里可以不用新建一个<code>length_list</code>列表，直接用range就行了。这里纠结只找到一对，是因为没有完全理解题意</p>
+</blockquote>
+<p><strong>v0.3</strong> 输出的是列表的列表，没有考虑异常情况  len(list) &gt;=4  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> nums:</span><br><span class="line">    n = len(nums)</span><br><span class="line">    result = []</span><br><span class="line">    length_list = list(range(<span class="number">0</span>, n))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> length_list[:(n<span class="number">-2</span>)]: <span class="comment">#这里我弄错了，切片操作不包括右边</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> length_list[(i+<span class="number">1</span>):]:</span><br><span class="line">            <span class="keyword">if</span>(nums[i] + nums[j] == target):</span><br><span class="line">                result.append([i,j])</span><br><span class="line"><span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+<p>初稿，空列表是返回none，一个数或没有满足条件返回[ ]</p>
+<p><strong>v1.0</strong> 算法复杂度是O(n<sup>2</sup>) v1.0</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> nums:</span><br><span class="line">    n = len(nums)</span><br><span class="line">    result = []</span><br><span class="line">    length_list = list(range(<span class="number">0</span>, n))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> length_list[:(n<span class="number">-1</span>)]:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> length_list[(i+<span class="number">1</span>):]:</span><br><span class="line">            <span class="keyword">if</span>(nums[i] + nums[j] == target):</span><br><span class="line">                result.append([i,j])</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>如何判断一个列表不为空</p>
+<ul>
+<li><p>PEP8不推荐用，判断长度的方式</p>
+<blockquote>
+<p>从逻辑上讲，一个集合（列表也可以看做一个集合）是否为空是比集合元素个数更基本的性质。比如：自然数集合不为空，但是自然数集合的元素个数是不知道的</p>
+<p>从风格上讲，一个列表长度为0隐含了一个列表为空，但是Python的格言是explicit is better than implicit，你判断一个列表是否为空不需要用一个更强的性质“长度”为0来判断。同理，也更不需要用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">try</span>:</span><br><span class="line">&gt;    aList[<span class="number">0</span>]</span><br><span class="line">&gt; <span class="keyword">except</span>:</span><br><span class="line">&gt;    <span class="comment"># empty!</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<p>来判断。虽然，这样也是可以的。但是你可以这样做不代表你应该这样做。Python不是Perl。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>v1.1</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> nums:</span><br><span class="line">   i = <span class="number">0</span></span><br><span class="line">   j = <span class="number">1</span></span><br><span class="line">   <span class="keyword">if</span> (i &lt; len(nums)):</span><br><span class="line">       <span class="keyword">if</span> (j &lt; len(nums)):</span><br><span class="line">           <span class="keyword">if</span> (nums[i] + nums[j] == target):</span><br><span class="line">               <span class="keyword">return</span> [i, j]</span><br><span class="line">           j += <span class="number">1</span></span><br><span class="line">           i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><strong>v1.2</strong> 超时</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> nums:</span><br><span class="line">   n = len(nums)</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> range(n<span class="number">-1</span>):</span><br><span class="line">       <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>, n):</span><br><span class="line">           <span class="keyword">if</span> (nums[i] + nums[j] == target):</span><br><span class="line">               <span class="keyword">return</span> [i, j]</span><br></pre></td></tr></table></figure>
+<p><strong>v1.3</strong> 索引可能会倒着</p>
+<blockquote>
+<p>这里思路是用target - num[i]，然后再看看这个数在没在列表里</p>
+<p>其实这个思路是对的，后面的最终答案也是这个思路</p>
+<p><font color="#0000FF"><strong>我没想到的是可以在新建的字典里操作</strong></font>，这里以及后面的版本，都是在原本的列表里操作，所以要考虑好多种情况</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n<span class="number">-1</span>):</span><br><span class="line">    other_num = target - nums[i]</span><br><span class="line">	<span class="comment"># 这里弄错了，是索引的范围，而other_num是值</span></span><br><span class="line">    <span class="keyword">if</span> (other_num &gt;= <span class="number">0</span> <span class="keyword">and</span> other_num &lt;= n<span class="number">-1</span> ):</span><br><span class="line">        j = nums.index(other_num)</span><br><span class="line">        <span class="keyword">return</span>[i,j]</span><br></pre></td></tr></table></figure>
+<p><strong>v1.4</strong> [3,3] 6 不行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n<span class="number">-1</span>):</span><br><span class="line">    other_num = target - nums[i]</span><br><span class="line">    <span class="keyword">if</span> other_num <span class="keyword">in</span> nums:</span><br><span class="line">        j = nums.index(other_num)</span><br><span class="line">        <span class="keyword">if</span> j != i:</span><br><span class="line">        	<span class="keyword">return</span>[i,j]</span><br></pre></td></tr></table></figure>
+<p><strong>v1.5</strong> [3,2,4] 6不行， [3],[3,3]ok</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> nums:</span><br><span class="line">           n = len(nums)</span><br><span class="line">           index = []</span><br><span class="line">           <span class="keyword">for</span> i <span class="keyword">in</span> range(n<span class="number">-1</span>):</span><br><span class="line">               other_num = target - nums[i]</span><br><span class="line">               <span class="keyword">if</span> other_num <span class="keyword">in</span> nums:</span><br><span class="line">                   <span class="keyword">for</span> item <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">                       <span class="keyword">if</span> item[<span class="number">1</span>] == other_num:</span><br><span class="line">                           index.append(item[<span class="number">0</span>])</span><br><span class="line">                   <span class="keyword">if</span> other_num == nums[i]:</span><br><span class="line">                       <span class="keyword">if</span> len(index) &gt; <span class="number">1</span>:</span><br><span class="line">                           j = index[<span class="number">1</span>]</span><br><span class="line">                       <span class="keyword">else</span>:</span><br><span class="line">                           j = index[<span class="number">0</span>]</span><br><span class="line">                           print(j)</span><br><span class="line">                       <span class="keyword">return</span> [i,j]</span><br></pre></td></tr></table></figure>
+<p><strong>v1.6</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> nums:</span><br><span class="line">            n = len(nums)</span><br><span class="line">            index = []</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(n- <span class="number">1</span>):</span><br><span class="line">                other_num = target - nums[i]</span><br><span class="line">                <span class="keyword">if</span> other_num <span class="keyword">in</span> nums:</span><br><span class="line">                    <span class="keyword">if</span> other_num == nums[i]:</span><br><span class="line">                        <span class="keyword">for</span> item <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">                            <span class="keyword">if</span> item[<span class="number">1</span>] == other_num:</span><br><span class="line">                                index.append(item[<span class="number">0</span>])</span><br><span class="line">                        <span class="keyword">if</span> other_num == nums[i]:</span><br><span class="line">                            <span class="keyword">if</span> len(index) &gt; <span class="number">1</span>:</span><br><span class="line">                                j = index[<span class="number">1</span>]</span><br><span class="line">                            <span class="keyword">else</span>:</span><br><span class="line">                                j = index[<span class="number">0</span>]</span><br><span class="line">                                print(j)</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                         j = nums.index(other_num)</span><br><span class="line">                   </span><br><span class="line">                    <span class="keyword">return</span> [i,j]</span><br></pre></td></tr></table></figure>
+<p><strong>v1.7</strong>  </p>
+<p>UnboundLocalError: local variable ‘j’ referenced before assignment  3.2.4  6</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> nums:</span><br><span class="line">    n = len(nums)</span><br><span class="line">    num_index = []</span><br><span class="line">    <span class="keyword">if</span> n &gt; <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n<span class="number">-1</span>):</span><br><span class="line">            other_num = target - nums[i]</span><br><span class="line">            <span class="keyword">if</span> other_num == nums[i]:</span><br><span class="line">                print(nums.count(other_num))</span><br><span class="line">                <span class="keyword">if</span> nums.count(other_num) != <span class="number">1</span>:</span><br><span class="line">                    <span class="keyword">for</span> item <span class="keyword">in</span> enumerate(nums):</span><br><span class="line">                        <span class="keyword">if</span> item[<span class="number">1</span>] == other_num:</span><br><span class="line">                            num_index.append(item[<span class="number">0</span>])</span><br><span class="line">                    j = num_index[<span class="number">1</span>]                       </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> other_num <span class="keyword">in</span> nums:</span><br><span class="line">                   j = nums.index(other_num)</span><br><span class="line">        <span class="keyword">return</span> [i,j]</span><br></pre></td></tr></table></figure>
+<p><strong>v1.8</strong> 借鉴java 循环下标 最后一测试用例不行 时间超时 python嵌套循环非常慢</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> nums:</span><br><span class="line">    n = len(nums)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>,n):</span><br><span class="line">            <span class="keyword">if</span> (nums[i] + nums[j] == target):</span><br><span class="line">                <span class="keyword">return</span>[i, j]</span><br><span class="line">          <span class="comment">#  j += 1 这两个多余 </span></span><br><span class="line">    	<span class="comment"># i += 1</span></span><br></pre></td></tr></table></figure>
+<h2 id="最终答案"><a href="#最终答案" class="headerlink" title="最终答案"></a>最终答案</h2><p><strong>v1.9</strong> Runtime: <strong>7201 ms</strong> 2.09%</p>
+<p>对循环的优化所遵循的原则是尽量减少循环过程中的计算量，有多重循环的尽量将内层的计算提到上一层。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> nums:   <span class="comment"># 这个可去掉，因为nums是空集合的话，遍历时直接返回空值</span></span><br><span class="line">    n = len(nums)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n<span class="number">-1</span>):</span><br><span class="line">        temp =nums[i] <span class="comment"># 循环之外能做的事不要放在循环内</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>,n):</span><br><span class="line">            <span class="keyword">if</span> (temp + nums[j] == target):</span><br><span class="line">                <span class="keyword">return</span>[i, j]</span><br></pre></td></tr></table></figure>
+<p> <strong>v2.0</strong> 看了讨论后写的方案，但是有错误</p>
+<p>修改错误后，提交 69ms，46.93%</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dict = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">           <span class="comment"># dict = &#123;&#125; 不应该放在循环里，不然每次都会初始化空字典，覆盖点原来的数据</span></span><br><span class="line">            <span class="keyword">if</span>((target - nums[i]) <span class="keyword">in</span> dict):</span><br><span class="line">                <span class="keyword">return</span>[dict[target - nums[i]], i]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                dict[nums[i]] = i</span><br></pre></td></tr></table></figure>
+<h2 id="碰到的一些问题"><a href="#碰到的一些问题" class="headerlink" title="碰到的一些问题"></a>碰到的一些问题</h2><ul>
+<li><p>如何做到返回一个个列表，不采用列表的列表的集合</p>
+<ul>
+<li><p>有一个结果就打印一次</p>
+</li>
+<li><p>但是在类中，好像无解，或者可以返回好多次？</p>
+<blockquote>
+<p>不能返回好多次，但可以返回多个值</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>markdown 表示平方 上标的方法</p>
+<ul>
+<li>typora打开设置，勾选上标后，语法 “2 ^ n ^”</li>
+<li>markdown用$符号包裹就可以实现latex行内公式，$km^2$实现</li>
+<li>markdown<ul>
+<li>用<code>&lt;sub&gt;</code>和<code>&lt;/sub&gt;</code>包括下标文字：H2O</li>
+<li>用<code>&lt;sup&gt;</code>和<code>&lt;/sup&gt;</code>包括上标文字：X2+2x+1 = 0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>for i in 0 怎么理解</p>
+<blockquote>
+<p>A range object will be empty if r[0] does not meet the value constraint.</p>
+</blockquote>
+</li>
+<li><p>python 中条件表达式是 lazy evaluation 的，也就是说如果存在条件表达式 if x and y，在 x 为 false 的情况下 y 表达式的值将不再计算。因此可以利用该特性在一定程度上提高程序效率。</p>
+</li>
+<li><p>字典为什么查找快，它是采取了什么原理，查找时没有遍历所有数据吗，不遍历，它怎么找到数据的</p>
+<blockquote>
+<p>为什么dict查找速度这么快？因为dict的实现原理和查字典是一样的。假设字典包含了1万个汉字，我们要查某一个字，一个办法是把字典从第一页往后翻，直到找到我们想要的字为止，这种方法就是在list中查找元素的方法，list越大，查找越慢。</p>
+<p>第二种方法是先在字典的索引表里（比如部首表）查这个字对应的页码，然后直接翻到该页，找到这个字。无论找哪个字，这种查找速度都非常快，不会随着字典大小的增加而变慢。</p>
+<p>dict可以用在需要高速查找的很多地方，在Python代码中几乎无处不在，正确使用dict非常重要，需要牢记的第一条就是dict的key必须是<strong>不可变对象</strong>。</p>
+<p>这是因为dict根据key来计算value的存储位置，如果每次计算相同的key得出的结果不同，那dict内部就完全混乱了。这个通过key计算位置的算法称为哈希算法（Hash）。</p>
+<p>by廖雪峰Python教程</p>
+</blockquote>
+<p>​</p>
+</li>
+</ul>
+<ul>
+<li>可以写下思路，流程图，再根据流程图写程序，不然脑袋里是一袋浆糊</li>
+<li>分析程序时，可以将值打印出来，debug模式单行运行已很好，可以知道程序的运行路线，看看和自己想的哪里不一样</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><p>一直在操作数据，而不是操作索引  —&gt; 这里是列表还是不太熟悉</p>
+</li>
+<li><p>思路所限，做的题还是比较少  —&gt; 碰的多了就好了</p>
+</li>
+<li><p>字典查找非常快，这个知道，但如何应用到程序却不会，这道题是个很好的例子</p>
+</li>
+<li><p>判断一个列表不为空，推荐用<code>if nums:</code>而不推荐用判断列表长度不为0的形式</p>
+</li>
+<li><p>写程序时要思路清晰，可以画流程图/结构图来帮助理解</p>
+</li>
+<li><p>对循环的优化所遵循的原则是尽量减少循环过程中的计算量，有多重循环的尽量将内层的计算提到上一层。</p>
+</li>
+<li><p>附上一个stackflow上的回答</p>
+<p><a href="https://stackoverflow.com/questions/10785218/fori-0truei-in-python" target="_blank" rel="noopener">for(i=0;True;i++) in python?</a></p>
+<p>You could make use of <a href="http://docs.python.org/library/itertools.html" target="_blank" rel="noopener"><code>itertools</code></a>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> takewhile, count</span><br><span class="line"></span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myfunc</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> takewhile(<span class="keyword">lambda</span> x: x <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>, (lookup(i) <span class="keyword">for</span> i <span class="keyword">in</span> count(<span class="number">1</span>)))</span><br></pre></td></tr></table></figure>
+<p>If you don’t like <code>takewhile</code> for whatever reason:</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i in <span class="built_in">count</span>(<span class="number">1</span>):</span><br><span class="line">     <span class="keyword">res</span> = lookup(i)</span><br><span class="line">     <span class="keyword">if</span> <span class="keyword">res</span> <span class="keyword">is</span> None: <span class="keyword">break</span></span><br><span class="line">     yield <span class="keyword">res</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="如果下次碰到这个题目应该怎么思考"><a href="#如果下次碰到这个题目应该怎么思考" class="headerlink" title="如果下次碰到这个题目应该怎么思考"></a>如果下次碰到这个题目应该怎么思考</h2><ol>
+<li>直接brute force, 怎么简单怎么来，就是看到这个第一反应</li>
+<li>然后写出后，分析它的算法和空间复杂度</li>
+<li>然后优化，查找类的可以用字典来代替（优化的套路应该是有限的，只不过自己现在刚起步，碰到少）</li>
+<li>最后想想有没有别的思路，如正反思考</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/21/Python3和Python2的区别/" rel="prev" title="Python3和Python2的区别">
+                <i class="fa fa-chevron-left"></i> Python3和Python2的区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/16/sublime3上的Python3编码问题/" rel="next" title="sublime3上的Python3编码问题">
+                sublime3上的Python3编码问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Hangyi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Hangyi" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:sweat0909@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x9898;&#x76EE;" class="headerlink" title="&#x9898;&#x76EE;"></a>&#x9898;&#x76EE;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题过程"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x89E3;&#x9898;&#x8FC7;&#x7A0B;" class="headerlink" title="&#x89E3;&#x9898;&#x8FC7;&#x7A0B;"></a>&#x89E3;&#x9898;&#x8FC7;&#x7A0B;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最终答案"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x6700;&#x7EC8;&#x7B54;&#x6848;" class="headerlink" title="&#x6700;&#x7EC8;&#x7B54;&#x6848;"></a>&#x6700;&#x7EC8;&#x7B54;&#x6848;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#碰到的一些问题"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x78B0;&#x5230;&#x7684;&#x4E00;&#x4E9B;&#x95EE;&#x9898;" class="headerlink" title="&#x78B0;&#x5230;&#x7684;&#x4E00;&#x4E9B;&#x95EE;&#x9898;"></a>&#x78B0;&#x5230;&#x7684;&#x4E00;&#x4E9B;&#x95EE;&#x9898;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果下次碰到这个题目应该怎么思考"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x5982;&#x679C;&#x4E0B;&#x6B21;&#x78B0;&#x5230;&#x8FD9;&#x4E2A;&#x9898;&#x76EE;&#x5E94;&#x8BE5;&#x600E;&#x4E48;&#x601D;&#x8003;" class="headerlink" title="&#x5982;&#x679C;&#x4E0B;&#x6B21;&#x78B0;&#x5230;&#x8FD9;&#x4E2A;&#x9898;&#x76EE;&#x5E94;&#x8BE5;&#x600E;&#x4E48;&#x601D;&#x8003;"></a>&#x5982;&#x679C;&#x4E0B;&#x6B21;&#x78B0;&#x5230;&#x8FD9;&#x4E2A;&#x9898;&#x76EE;&#x5E94;&#x8BE5;&#x600E;&#x4E48;&#x601D;&#x8003;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hangyi</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">21.0k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://hangyi.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://hangyi.github.io/2018/01/20/001twoSum/';
+          this.page.identifier = '2018/01/20/001twoSum/';
+          this.page.title = '001TwoSum';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://hangyi.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
