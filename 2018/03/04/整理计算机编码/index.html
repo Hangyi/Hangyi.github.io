@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="计算机基础,编码," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Python 3和Python 2 大部分都是相同的，要知道具体不同的部分可以直接参考文档。这里记录的是我遇到的或者看书看到的Python 2和3的不同点。">
-<meta name="keywords" content="Python">
+<meta name="description" content="计算机编码，书上都是很简单的介绍，篇幅不长，大致介绍了各种编码系统，但是从我这段时间学习Python中发现，好多坑，都是因为编码问题。 不同的位模式集合被设计用于表示文本符号。每一个集合被称为代码。表示符号的过程被称为编码。 编码是信息从一种形式或格式转换为另一种形式的过程。解码，是编码的逆过程。 碰到过各种各样的编码，比如GBK，UTF-8,  ASCII,  Unico等等。不同的操作系统，采">
+<meta name="keywords" content="计算机基础,编码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python3和Python2的区别">
-<meta property="og:url" content="https://hangyi.github.io/2018/01/21/Python3和Python2的区别/index.html">
+<meta property="og:title" content="整理计算机编码">
+<meta property="og:url" content="https://hangyi.github.io/2018/03/04/整理计算机编码/index.html">
 <meta property="og:site_name" content="Hangyi">
-<meta property="og:description" content="Python 3和Python 2 大部分都是相同的，要知道具体不同的部分可以直接参考文档。这里记录的是我遇到的或者看书看到的Python 2和3的不同点。">
+<meta property="og:description" content="计算机编码，书上都是很简单的介绍，篇幅不长，大致介绍了各种编码系统，但是从我这段时间学习Python中发现，好多坑，都是因为编码问题。 不同的位模式集合被设计用于表示文本符号。每一个集合被称为代码。表示符号的过程被称为编码。 编码是信息从一种形式或格式转换为另一种形式的过程。解码，是编码的逆过程。 碰到过各种各样的编码，比如GBK，UTF-8,  ASCII,  Unico等等。不同的操作系统，采">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-05T04:26:40.000Z">
+<meta property="og:updated_time" content="2018-03-06T08:30:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python3和Python2的区别">
-<meta name="twitter:description" content="Python 3和Python 2 大部分都是相同的，要知道具体不同的部分可以直接参考文档。这里记录的是我遇到的或者看书看到的Python 2和3的不同点。">
+<meta name="twitter:title" content="整理计算机编码">
+<meta name="twitter:description" content="计算机编码，书上都是很简单的介绍，篇幅不长，大致介绍了各种编码系统，但是从我这段时间学习Python中发现，好多坑，都是因为编码问题。 不同的位模式集合被设计用于表示文本符号。每一个集合被称为代码。表示符号的过程被称为编码。 编码是信息从一种形式或格式转换为另一种形式的过程。解码，是编码的逆过程。 碰到过各种各样的编码，比如GBK，UTF-8,  ASCII,  Unico等等。不同的操作系统，采">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://hangyi.github.io/2018/01/21/Python3和Python2的区别/"/>
+  <link rel="canonical" href="https://hangyi.github.io/2018/03/04/整理计算机编码/"/>
 
 
 
 
 
-  <title>Python3和Python2的区别 | Hangyi</title>
+  <title>整理计算机编码 | Hangyi</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hangyi.github.io/2018/01/21/Python3和Python2的区别/">
+    <link itemprop="mainEntityOfPage" href="https://hangyi.github.io/2018/03/04/整理计算机编码/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hangyi">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Python3和Python2的区别</h1>
+          <h1 class="post-title" itemprop="name headline">整理计算机编码</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T18:57:11+08:00">
-                2018-01-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-04T16:29:39+08:00">
+                2018-03-04
               </time>
             
 
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-02-05T12:26:40+08:00">
-                2018-02-05
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-06T16:30:38+08:00">
+                2018-03-06
               </time>
             
           </span>
@@ -335,9 +335,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/01/21/Python3和Python2的区别/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/04/整理计算机编码/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/01/21/Python3和Python2的区别/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/04/整理计算机编码/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -365,36 +365,18 @@
       
 
       
-        <p>Python 3和Python 2 大部分都是相同的，要知道具体不同的部分可以直接参考文档。这里记录的是我遇到的或者看书看到的Python 2和3的不同点。</p>
-<a id="more"></a>
-<ol>
-<li><p>Python 3中通过内置的open函数获取文件句柄。该句柄默认会采用UTF-8的格式来操作文件</p>
-<p> 而在Python 2中，文件操作的默认编码格式是二进制形式。</p>
-</li>
-<li><p>Python 3中，bytes是一种包含8位值得序列，str是一种包含Unicode字符的序列。开发者不能以<code>&gt;</code>或<code>+</code>等操作符来混同操作bytes和str序列。</p>
-<p>Python2中，str是一种包含8位值的序列，unicode是一种包含Unicode字符的序列。如果str只有7位ASCII字符，那么可以通过想过的操作符同时使用str与unicode。</p>
-</li>
-<li><p>在Python 2中，整数除法的结果只包含整数部分，小数部 分被删除。<code>3 / 2 = 1</code> </p>
-<p>在Python3中，<code>3 / 2 = 1.5</code></p>
-</li>
-<li><p>Python3中打印<code>print</code>需要加括号，而Python2中不需要</p>
-</li>
-<li><p>在Python2中</p>
-<p><code>range()</code>返回一个递增或递减的数字列表，列表的元素值由三个参数决定</p>
-<p><code>xrange</code>是一个类，返回的是一个<code>xrange</code>对象。使用<code>xrange()</code>进行遍历，每次遍历只返回一个值。range()返回的是一个列表，一次性计算并返回所有的值。因此，xrange()的执行效率要高于range()</p>
-<p>Python3.3 后</p>
-<p><code>range</code>和<code>xrange</code>合并了，<code>range</code>不再是列表了,而是类似迭代器</p>
-</li>
-<li><p>获取用户输入的函数不同，Python3 使用的是<code>input()</code>函数来提示用户输入，读取用户输入（字符串）而在Python2.7 中则用<code>raw_input()</code>，Python2.7中也有<code>input()</code>函数，但他将用户的输入解读为Python代码，并尝试运行他们。最好的结果是出现错误，指出Python不明白输入的代码；而最糟的结果是，将运行你原本无意运行的代码。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Python2.7</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = raw_input(<span class="string">"Please enter somthing: "</span>)</span><br><span class="line">Please enter somthing: <span class="number">1</span> + <span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line"><span class="string">'1 + 3'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = input(<span class="string">"Please enter somthing: "</span>)</span><br><span class="line">Please enter somthing: <span class="number">1</span> + <span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>整数的表示显示不同</p>
-<p>Python 2 中的整数分为一般整数（32位，与机器环境相关）和长整数（无穷精度），并且一个整数可以以l或L结尾，从而强迫其成为长整数。由于当整数的值超过32位时候会自动转换成长整数，不需要自己输入L，当需要额外的精度时Python会自动转换为长整数</p>
-<p>Python 3 ，一般整数和长整数类型已经合二为一了，只有整数这一种，支持Python 2中的表示方法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Python 2.7</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> sys</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(sys.maxint)</span><br><span class="line"><span class="number">9223372036854775807</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">2</span> ** <span class="number">63</span></span><br><span class="line"><span class="number">9223372036854775808L</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(<span class="number">9223372036854775807</span>)</span><br><span class="line">&lt;type <span class="string">'int'</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(<span class="number">9223372036854775807</span>+<span class="number">1</span>)</span><br><span class="line">&lt;type <span class="string">'long'</span>&gt;</span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-</ol>
+        <p>计算机编码，书上都是很简单的介绍，篇幅不长，大致介绍了各种编码系统，但是从我这段时间学习Python中发现，好多坑，都是因为编码问题。</p>
+<p>不同的位模式集合被设计用于表示文本符号。每一个集合被称为<strong>代码</strong>。表示符号的过程被称为<strong>编码</strong>。</p>
+<p><strong>编码</strong>是信息从一种形式或格式转换为另一种形式的过程。<strong>解码</strong>，是编码的逆过程。</p>
+<p>碰到过各种各样的编码，比如GBK，UTF-8,  ASCII,  Unico等等。不同的操作系统，采用的默认编码不同。这些都在编程的过程中都是值得注意的。</p>
+<p>下面按照编码系统出现的顺序来一一分析。</p>
+<p>unicode(UTF-8)</p>
+<p>unicode(UTF-16)</p>
+<p>中文</p>
+<p>GBK</p>
+<p>GB 2312</p>
+<p>GB 18030</p>
+<p>Big 5</p>
 
       
     </div>
@@ -412,7 +394,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/计算机基础/" rel="tag"># 计算机基础</a>
+          
+            <a href="/tags/编码/" rel="tag"># 编码</a>
           
         </div>
       
@@ -425,8 +409,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/25/189rotateArray/" rel="prev" title="189rotateArray">
-                <i class="fa fa-chevron-left"></i> 189rotateArray
+              <a href="/2018/03/17/命令行找不到python3命令/" rel="prev" title="命令行找不到python3命令">
+                <i class="fa fa-chevron-left"></i> 命令行找不到python3命令
               </a>
             
           </div>
@@ -435,8 +419,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/20/001twoSum/" rel="next" title="001TwoSum">
-                001TwoSum <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/05/爬虫使用cookie免登陆/" rel="next" title="爬虫使用cookie免登陆">
+                爬虫使用cookie免登陆 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -743,9 +727,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://hangyi.github.io/2018/01/21/Python3和Python2的区别/';
-          this.page.identifier = '2018/01/21/Python3和Python2的区别/';
-          this.page.title = 'Python3和Python2的区别';
+          this.page.url = 'https://hangyi.github.io/2018/03/04/整理计算机编码/';
+          this.page.identifier = '2018/03/04/整理计算机编码/';
+          this.page.title = '整理计算机编码';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://hangyi.disqus.com/embed.js';
