@@ -88,7 +88,7 @@
 <meta property="og:description" content="看着服务器命令行里的提示符灰蒙蒙的，不像我电脑上的oh-my-zsh的主题，色彩丰富。所以我就想能不能把腾讯云服务器里的shell里的提示符也改变一下颜色。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://hangyi.github.io/img/2018-03-25修改云服务器上的shell提示符.jpg">
-<meta property="og:updated_time" content="2018-03-26T10:09:12.000Z">
+<meta property="og:updated_time" content="2018-03-26T10:24:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="修改云服务器上的shell提示符">
 <meta name="twitter:description" content="看着服务器命令行里的提示符灰蒙蒙的，不像我电脑上的oh-my-zsh的主题，色彩丰富。所以我就想能不能把腾讯云服务器里的shell里的提示符也改变一下颜色。">
@@ -204,7 +204,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -214,7 +214,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tag"></i> <br />
             
@@ -300,7 +300,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-26T18:09:12+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-26T18:24:22+08:00">
                 2018-03-26
               </time>
             
@@ -369,6 +369,7 @@
       
         <p>看着服务器命令行里的提示符灰蒙蒙的，不像我电脑上的oh-my-zsh的主题，色彩丰富。所以我就想能不能把腾讯云服务器里的shell里的提示符也改变一下颜色。<br><a id="more"></a></p>
 <p>提示符是由一个环境变量定义的，叫做 PS1（是“prompt string one” 的简写）。我们可以通过 echo 命令来查看 PS1的内容。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $PS1</span><br></pre></td></tr></table></figure>
 <p>参考了oh-my-zsh的“ys”主题配色</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">PS1='</span><br><span class="line">\[\033[0;36m\]\u #青蓝色的用户名</span><br><span class="line">\[\033[0;37m\]@  #白色的@</span><br><span class="line">\[\033[0;32m\]\h #绿色的主机名 </span><br><span class="line">\[\033[0;37m\]in #白色的in</span><br><span class="line">\[\033[1;34m\]\w #灰色的路径名</span><br><span class="line">\[\033[0;37m\][\t]#白色的时间  \[\033[1;37m\]高亮的白色</span><br><span class="line">\n	#换行</span><br><span class="line">\[\033[31;1m\]\$ #浅红色的$</span><br><span class="line">\[\033[00m\] #告诉终端仿真器恢复到原来的颜色</span><br><span class="line">'</span><br><span class="line"></span><br><span class="line">PS1='\[\033[0;36m\]\u \[\033[0;37m\]@ \[\033[0;32m\]\h \[\033[0;37m\]in \[\033[1;34m\]\w \[\033[0;37m\][\t]\n\[\033[1;31m\]\$ \[\033[00m\]'</span><br></pre></td></tr></table></figure>
 <p>显示效果如图所示</p>
@@ -501,7 +502,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -589,7 +590,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">24.3k</span>
+    <span title="Site words total count">26.9k</span>
   
 </div>
 
