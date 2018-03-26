@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="计算机基础,编码," />
+  <meta name="keywords" content="Linux,Ubuntu," />
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="计算机编码，书上都是很简单的介绍，篇幅不长，大致介绍了各种编码系统，但是从我这段时间学习Python中发现，好多坑，都是因为编码问题。 不同的位模式集合被设计用于表示文本符号。每一个集合被称为代码。表示符号的过程被称为编码。 编码是信息从一种形式或格式转换为另一种形式的过程。解码，是编码的逆过程。 碰到过各种各样的编码，比如GBK，UTF-8,  ASCII,  Unico等等。不同的操作系统，采">
-<meta name="keywords" content="计算机基础,编码">
+<meta name="description" content="之前在折腾shell提示符的样式时，发现提示符最后有时会出现”C:127“，C后面的数字不唯一，会有变化。 对于不知道的，就搜索引擎搜索。做了以下尝试，”zsh ys C是什么意思“，”C:127“，”ys“，搜不到解释。 后来想，这里出现”C:127“是因为我设置了oh-my-zsh主题ys的原因，那我能不能找找ys的文档，来看看这个东西到底叫什么，是用来做什么的？ 在这里https://gi">
+<meta name="keywords" content="Linux,Ubuntu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="整理计算机编码">
-<meta property="og:url" content="https://hangyi.github.io/2018/03/04/整理计算机编码/index.html">
+<meta property="og:title" content="shell退出状态码学习整理">
+<meta property="og:url" content="https://hangyi.github.io/2018/03/26/2018-03-26shell退出状态码学习整理/index.html">
 <meta property="og:site_name" content="Hangyi">
-<meta property="og:description" content="计算机编码，书上都是很简单的介绍，篇幅不长，大致介绍了各种编码系统，但是从我这段时间学习Python中发现，好多坑，都是因为编码问题。 不同的位模式集合被设计用于表示文本符号。每一个集合被称为代码。表示符号的过程被称为编码。 编码是信息从一种形式或格式转换为另一种形式的过程。解码，是编码的逆过程。 碰到过各种各样的编码，比如GBK，UTF-8,  ASCII,  Unico等等。不同的操作系统，采">
+<meta property="og:description" content="之前在折腾shell提示符的样式时，发现提示符最后有时会出现”C:127“，C后面的数字不唯一，会有变化。 对于不知道的，就搜索引擎搜索。做了以下尝试，”zsh ys C是什么意思“，”C:127“，”ys“，搜不到解释。 后来想，这里出现”C:127“是因为我设置了oh-my-zsh主题ys的原因，那我能不能找找ys的文档，来看看这个东西到底叫什么，是用来做什么的？ 在这里https://gi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-06T08:30:38.000Z">
+<meta property="og:image" content="https://hangyi.github.io/Users/hangyi/Documents/blog/source/img/2018-03-26shell退出状态码学习整理.jpg">
+<meta property="og:updated_time" content="2018-03-26T10:02:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="整理计算机编码">
-<meta name="twitter:description" content="计算机编码，书上都是很简单的介绍，篇幅不长，大致介绍了各种编码系统，但是从我这段时间学习Python中发现，好多坑，都是因为编码问题。 不同的位模式集合被设计用于表示文本符号。每一个集合被称为代码。表示符号的过程被称为编码。 编码是信息从一种形式或格式转换为另一种形式的过程。解码，是编码的逆过程。 碰到过各种各样的编码，比如GBK，UTF-8,  ASCII,  Unico等等。不同的操作系统，采">
+<meta name="twitter:title" content="shell退出状态码学习整理">
+<meta name="twitter:description" content="之前在折腾shell提示符的样式时，发现提示符最后有时会出现”C:127“，C后面的数字不唯一，会有变化。 对于不知道的，就搜索引擎搜索。做了以下尝试，”zsh ys C是什么意思“，”C:127“，”ys“，搜不到解释。 后来想，这里出现”C:127“是因为我设置了oh-my-zsh主题ys的原因，那我能不能找找ys的文档，来看看这个东西到底叫什么，是用来做什么的？ 在这里https://gi">
+<meta name="twitter:image" content="https://hangyi.github.io/Users/hangyi/Documents/blog/source/img/2018-03-26shell退出状态码学习整理.jpg">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://hangyi.github.io/2018/03/04/整理计算机编码/"/>
+  <link rel="canonical" href="https://hangyi.github.io/2018/03/26/2018-03-26shell退出状态码学习整理/"/>
 
 
 
 
 
-  <title>整理计算机编码 | Hangyi</title>
+  <title>shell退出状态码学习整理 | Hangyi</title>
   
 
 
@@ -253,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hangyi.github.io/2018/03/04/整理计算机编码/">
+    <link itemprop="mainEntityOfPage" href="https://hangyi.github.io/2018/03/26/2018-03-26shell退出状态码学习整理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hangyi">
@@ -270,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">整理计算机编码</h1>
+          <h1 class="post-title" itemprop="name headline">shell退出状态码学习整理</h1>
         
 
         <div class="post-meta">
@@ -282,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-04T16:29:39+08:00">
-                2018-03-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-26T17:17:47+08:00">
+                2018-03-26
               </time>
             
 
@@ -298,8 +300,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-06T16:30:38+08:00">
-                2018-03-06
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-26T18:02:17+08:00">
+                2018-03-26
               </time>
             
           </span>
@@ -335,9 +337,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/04/整理计算机编码/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/26/2018-03-26shell退出状态码学习整理/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/04/整理计算机编码/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/26/2018-03-26shell退出状态码学习整理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -365,18 +367,82 @@
       
 
       
-        <p>计算机编码，书上都是很简单的介绍，篇幅不长，大致介绍了各种编码系统，但是从我这段时间学习Python中发现，好多坑，都是因为编码问题。</p>
-<p>不同的位模式集合被设计用于表示文本符号。每一个集合被称为<strong>代码</strong>。表示符号的过程被称为<strong>编码</strong>。</p>
-<p><strong>编码</strong>是信息从一种形式或格式转换为另一种形式的过程。<strong>解码</strong>，是编码的逆过程。</p>
-<p>碰到过各种各样的编码，比如GBK，UTF-8,  ASCII,  Unico等等。不同的操作系统，采用的默认编码不同。这些都在编程的过程中都是值得注意的。</p>
-<p>下面按照编码系统出现的顺序来一一分析。</p>
-<p>unicode(UTF-8)</p>
-<p>unicode(UTF-16)</p>
-<p>中文</p>
-<p>GBK</p>
-<p>GB 2312</p>
-<p>GB 18030</p>
-<p>Big 5</p>
+        <p><img src="/Users/hangyi/Documents/blog/source/img/2018-03-26shell退出状态码学习整理.jpg" alt="018-03-26shell退出状态码学习整"></p>
+<p>之前在折腾shell提示符的样式时，发现提示符最后有时会出现”C:127“，C后面的数字不唯一，会有变化。</p>
+<p>对于不知道的，就搜索引擎搜索。做了以下尝试，”zsh ys C是什么意思“，”C:127“，”ys“，搜不到解释。</p>
+<p>后来想，这里出现”C:127“是因为我设置了oh-my-zsh主题ys的原因，那我能不能找找ys的文档，来看看这个东西到底叫什么，是用来做什么的？</p>
+<p>在这里<a href="https://gist.github.com/ysmood/6110461找到ys的源代码，line42处" target="_blank" rel="noopener">https://gist.github.com/ysmood/6110461找到ys的源代码，line42处</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> PRIVILEGES USER @ MACHINE <span class="keyword">in</span> DIRECTORY on git:BRANCH STATE [TIME] C:LAST_EXIT_CODE</span></span><br></pre></td></tr></table></figure>
+<p>指出了”C“的含义是last_exit_code，翻译是”最后退出的代码“，然后在搜索，发现这个术语叫退出码。</p>
+<p>linux在执行完一条命令后，使用 <code>echo $?</code> 会显示上一条命令是否执行成功</p>
+<p>找到一篇博客介绍它，然后参考资料是《Linux命令行与shell脚本编程大全》，刚好我电脑里有这本书，就翻出来看看。</p>
+<blockquote>
+<p>shell中运行的每个命令都是用退出状态码（exit status）告诉shell它已经运行完毕。退出状态码是一个0~255的整数值，在命令结束时由命令传给shell。可以捕获这个值并在脚本中使用。</p>
+<p>Linux提供了一个专门的变量 <code>$?</code> 来保存上个已执行命令的退出状态码。对于需要进行检查的命令，必须在其运行完毕后立刻查看或使用<code>$?</code>变量。它的值会变成由shell所执行的最后一条命令 的退出状态码。</p>
+<p>一个成功结束的退出状态码是0。如果一个命令结束时有错误，退出状态码就是一个正数值。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>退出码的值</th>
+<th>含义</th>
+<th>例子</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>通用错误</td>
+<td>let “var1 = 1/0”</td>
+<td>各种各样的错误都可能使用这个退出码, 比如”除0错误”</td>
+</tr>
+<tr>
+<td>2</td>
+<td>shell内建命令使用错误</td>
+<td></td>
+<td>很少看到, 通常情况下退出码都为1</td>
+</tr>
+<tr>
+<td>126</td>
+<td>命令调用不能执行</td>
+<td></td>
+<td>程序或命令的权限是不可执行的</td>
+</tr>
+<tr>
+<td>127</td>
+<td>”command not found“</td>
+<td></td>
+<td>估计是<code>$PATH</code>不对, 或者是拼写错误</td>
+</tr>
+<tr>
+<td>128</td>
+<td>exit的参数错误</td>
+<td>exit 3.14159</td>
+<td>exit只能以整数作为参数, 范围是0 - 255(见脚注)</td>
+</tr>
+<tr>
+<td>128+n</td>
+<td>信号”n”的致命错误</td>
+<td><strong>kill -9</strong> 脚本的<code>$PPID</code></td>
+<td>$? 返回137(128 + 9)</td>
+</tr>
+<tr>
+<td>130</td>
+<td>用Control-C来结束脚本</td>
+<td></td>
+<td>Control-C是信号2的致命错误, (130 = 128 + 2, 见上边)</td>
+</tr>
+<tr>
+<td>255*</td>
+<td>超出范围的退出状态</td>
+<td>exit -1</td>
+<td><strong>exit</strong>命令只能够接受范围是0 - 255的整数作为参数</td>
+</tr>
+</tbody>
+</table>
+<p> 退出状态码的最大只能是255。若其大于255，则返回模除256后的余数。</p>
+<p>所有ys主题提示符里的<code>C</code>就是上一条命令的执行状态，帮我们省略了<code>echo $?</code>的命令。</p>
 
       
     </div>
@@ -394,9 +460,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/计算机基础/" rel="tag"># 计算机基础</a>
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
-            <a href="/tags/编码/" rel="tag"># 编码</a>
+            <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
           
         </div>
       
@@ -409,18 +475,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/15/弄腾讯云服务器碰到的坑/" rel="prev" title="">
-                <i class="fa fa-chevron-left"></i> 
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/05/爬虫使用cookie免登陆/" rel="next" title="爬虫使用cookie免登陆">
-                爬虫使用cookie免登陆 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/25/2018-03-25修改云服务器上的shell提示符/" rel="next" title="修改云服务器上的shell提示符">
+                修改云服务器上的shell提示符 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -727,9 +789,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://hangyi.github.io/2018/03/04/整理计算机编码/';
-          this.page.identifier = '2018/03/04/整理计算机编码/';
-          this.page.title = '整理计算机编码';
+          this.page.url = 'https://hangyi.github.io/2018/03/26/2018-03-26shell退出状态码学习整理/';
+          this.page.identifier = '2018/03/26/2018-03-26shell退出状态码学习整理/';
+          this.page.title = 'shell退出状态码学习整理';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://hangyi.disqus.com/embed.js';
