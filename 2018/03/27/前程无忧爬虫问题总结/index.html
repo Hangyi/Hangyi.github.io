@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="如何判断公司简称也在黑名单里 理想状态是能识别公司的名称的各种形式，简称，全称，关键词，但我实在不知道这个应该怎么实现。最后采取的是最简单的方案，对于抓取的每一个公司判断它在不在黑名单公司列表里，在的话，就从抓取结果中删除它。   发送邮件采用什么方法？  为什么yagmail我设置了不能发送邮件 发送邮件可以用smtplib库，参考《Python编程快速上手__让繁琐工作自动化》第16章  后">
+<meta name="description" content="一个关于爬前程无忧岗位的脚本，陆陆续续写了好久，今天终于全部弄好，并部署到腾讯云上了。这里总结下我这段时间里写这个脚本碰到的问题和一些解决方案。">
 <meta name="keywords" content="Python,爬虫,Linux,Ubuntu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前程无忧爬虫问题总结">
 <meta property="og:url" content="https://hangyi.github.io/2018/03/27/前程无忧爬虫问题总结/index.html">
 <meta property="og:site_name" content="Hangyi">
-<meta property="og:description" content="如何判断公司简称也在黑名单里 理想状态是能识别公司的名称的各种形式，简称，全称，关键词，但我实在不知道这个应该怎么实现。最后采取的是最简单的方案，对于抓取的每一个公司判断它在不在黑名单公司列表里，在的话，就从抓取结果中删除它。   发送邮件采用什么方法？  为什么yagmail我设置了不能发送邮件 发送邮件可以用smtplib库，参考《Python编程快速上手__让繁琐工作自动化》第16章  后">
+<meta property="og:description" content="一个关于爬前程无忧岗位的脚本，陆陆续续写了好久，今天终于全部弄好，并部署到腾讯云上了。这里总结下我这段时间里写这个脚本碰到的问题和一些解决方案。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-26T19:38:32.000Z">
+<meta property="og:updated_time" content="2018-03-26T19:52:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前程无忧爬虫问题总结">
-<meta name="twitter:description" content="如何判断公司简称也在黑名单里 理想状态是能识别公司的名称的各种形式，简称，全称，关键词，但我实在不知道这个应该怎么实现。最后采取的是最简单的方案，对于抓取的每一个公司判断它在不在黑名单公司列表里，在的话，就从抓取结果中删除它。   发送邮件采用什么方法？  为什么yagmail我设置了不能发送邮件 发送邮件可以用smtplib库，参考《Python编程快速上手__让繁琐工作自动化》第16章  后">
+<meta name="twitter:description" content="一个关于爬前程无忧岗位的脚本，陆陆续续写了好久，今天终于全部弄好，并部署到腾讯云上了。这里总结下我这段时间里写这个脚本碰到的问题和一些解决方案。">
 
 
 
@@ -298,7 +298,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-27T03:38:32+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-27T03:52:54+08:00">
                 2018-03-27
               </time>
             
@@ -365,7 +365,8 @@
       
 
       
-        <ul>
+        <p>一个关于<a href="https://github.com/Hangyi/some_scripts/tree/master/001.%20job_scraping" target="_blank" rel="noopener">爬前程无忧岗位的脚本</a>，陆陆续续写了好久，今天终于全部弄好，并部署到腾讯云上了。这里总结下我这段时间里写这个脚本碰到的问题和一些解决方案。<br><a id="more"></a></p>
+<ul>
 <li><h2 id="如何判断公司简称也在黑名单里"><a href="#如何判断公司简称也在黑名单里" class="headerlink" title="如何判断公司简称也在黑名单里"></a>如何判断公司简称也在黑名单里</h2><ul>
 <li>理想状态是能识别公司的名称的各种形式，简称，全称，关键词，但我实在不知道这个应该怎么实现。最后采取的是最简单的方案，对于抓取的每一个公司判断它在不在黑名单公司列表里，在的话，就从抓取结果中删除它。</li>
 </ul>
@@ -410,14 +411,11 @@
 </li>
 </ul>
 </li>
-<li>​</li>
 </ul>
 </li>
 <li><blockquote>
 <p>最常见的异常现象是当前文档找不到指定的Tag,而这个Tag光是用眼睛就足够发现的了. <code>find_all()</code>方法返回 [] ,而 <code>find()</code> 方法返回 None .这是Python内置解析器的又一个问题: 解析器会跳过那些它不知道的tag.解决方法还是 <a href="http://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/index.html#id12" target="_blank" rel="noopener">安装lxml或html5lib</a></p>
-<ul>
-<li>如果同样的代码在不同环境下结果不同,可能是因为两个环境下使用不同的解析器造成的.例如这个环境中安装了lxml,而另一个环境中只有html5lib, <a href="http://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/index.html#id53" target="_blank" rel="noopener">解析器之间的区别</a> 中说明了原因.修复方法是在 <code>BeautifulSoup</code> 的构造方法中中指定解析器</li>
-</ul>
+<p>如果同样的代码在不同环境下结果不同,可能是因为两个环境下使用不同的解析器造成的.例如这个环境中安装了lxml,而另一个环境中只有html5lib, <a href="http://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/index.html#id53" target="_blank" rel="noopener">解析器之间的区别</a> 中说明了原因.修复方法是在 <code>BeautifulSoup</code> 的构造方法中中指定解析器</p>
 <p>参考 <a href="http://blog.csdn.net/adinlead/article/details/53897409" target="_blank" rel="noopener">BeautifulSoup解析页面造成信息丢失的解决办法</a></p>
 </blockquote>
 </li>
@@ -428,10 +426,12 @@
 <p>这个报错什么意思呢，是smtp认证错误，认证不成功</p>
 <p>网上查了下大概都是说密码不对或者邮箱的stmp服务未开启，但是我在本地同样的代码可以发送邮件啊</p>
 <p>是不是我之前操作的脚本，登陆了，没有退出？</p>
-<p>搜索得到的答案大多都是账号密码啥的输错了，但我检查了好几十遍了，没有错啊。</p>
+<p>搜索得到的答案大多都是账号密码啥的输错了，但我检查了好几十遍了，没有错啊。起初还以为是腾讯云封锁了25端口的原因，但是我用的是第三方邮件服务，是不受这25端口的影响的。</p>
 <p>最后，还真让我在网上找到和我碰到同样问题的人。这里的回答是5.7.3报错是因为已验证的中继会话无法建立，因为此用户没有权限进行外部中继。差不多就是不能登陆邮箱。</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">In</span> the question, I noted that <span class="string">"It works in PowerShell"</span>. I ran WireShark on the Windows PC <span class="keyword">and</span> ran the PowerShell commands again.</span><br><span class="line"><span class="keyword">In</span> the Wireshark session, I saw the same <span class="builtin-name">error</span> <span class="string">"535 5.7.3 Authentication unsuccessful"</span>.</span><br><span class="line">The PowerShell command (Send-MailMessage) ignores the <span class="builtin-name">error</span> <span class="keyword">and</span> continues <span class="keyword">to</span> send the message (MAIL <span class="keyword">FROM</span>, RCPT <span class="keyword">TO</span>) <span class="keyword">and</span> the message is delivered.</span><br><span class="line">The issue here is that 5.7.3 can mean that an authenticated relay session cannot be established because this<span class="built_in"> user </span>does <span class="keyword">not</span> have permissions <span class="keyword">to</span> relay externally. However, you can <span class="builtin-name">run</span> an anonymous relay session by ignoring the <span class="builtin-name">error</span> <span class="keyword">and</span> continuing <span class="keyword">to</span> send the message.</span><br></pre></td></tr></table></figure>
+<blockquote>
 <p><a href="https://python.devhelping.com/article/11134596/Error+535+whilst+trying+to+send+email+from+Python+and+NTLM+library" target="_blank" rel="noopener">https://python.devhelping.com/article/11134596/Error+535+whilst+trying+to+send+email+from+Python+and+NTLM+library</a></p>
+</blockquote>
 <p>但是为什么呢，账号密码都是对的，还是不能登陆邮箱呢？我突然想登陆到outlook邮箱，看看发件箱有没有记录，结果在邮箱看到outlook给我发的警告邮件，原来是outlook限制我登陆了，异常登陆的地方太多😭。哎，在这里纠结了3个小时。</p>
 </li>
 <li><h2 id="脚本定时启动，可以什么方法实现？"><a href="#脚本定时启动，可以什么方法实现？" class="headerlink" title="脚本定时启动，可以什么方法实现？"></a>脚本定时启动，可以什么方法实现？</h2><ul>
@@ -509,12 +509,16 @@
 <li><h2 id="为什么有的文章里说，执行shell脚本，需要赋予脚本可执行权限"><a href="#为什么有的文章里说，执行shell脚本，需要赋予脚本可执行权限" class="headerlink" title="为什么有的文章里说，执行shell脚本，需要赋予脚本可执行权限"></a>为什么有的文章里说，执行shell脚本，需要赋予脚本可执行权限</h2><ul>
 <li><p>source 命令是在当前的shell环境下执行脚本 ，不会创建子shell;</p>
 </li>
-<li><p>输入以下命令添加对51job_searcher.sh的执行权限：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x 51job_searcher.sh</span><br></pre></td></tr></table></figure>
+<li><p>运行Shell脚本：</p>
+<p>​    直接执行具有x权限的脚本文件：例如：./test.sh</p>
+<p>​    使用指定的解释器程序执行脚本内容：例如：bash test.sh 、sh test.sh</p>
+<p>用文本编辑器新建的文件是没有可执行的权限的，可用<code>chmod u+x filename</code>设置权限</p>
 </li>
 <li><p>ll命令 文件之后带一个星号”*”表示这个文件是可执行文件</p>
 </li>
 </ul>
+</li>
+<li><h2 id="echo-e-“Hello-World-a”-为什么在命令行里运行正常，在脚本里就有-e"><a href="#echo-e-“Hello-World-a”-为什么在命令行里运行正常，在脚本里就有-e" class="headerlink" title="echo -e “Hello World! \a” 为什么在命令行里运行正常，在脚本里就有-e"></a>echo -e “Hello World! \a” 为什么在命令行里运行正常，在脚本里就有-e</h2><p>因为ubuntu默认shell是dash，<code>sh filename.sh</code> 里的第一个sh指的是dash，即使你脚本里指定了bash。如果要得到输出没有-e的结果，可以运行<code>bash filename.sh</code></p>
 </li>
 </ul>
 <h2 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h2><ul>
@@ -557,6 +561,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/30/pyautogui学习笔记/" rel="prev" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
             
           </div>
 
@@ -655,7 +663,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -726,7 +734,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何判断公司简称也在黑名单里"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5982;&#x4F55;&#x5224;&#x65AD;&#x516C;&#x53F8;&#x7B80;&#x79F0;&#x4E5F;&#x5728;&#x9ED1;&#x540D;&#x5355;&#x91CC;" class="headerlink" title="&#x5982;&#x4F55;&#x5224;&#x65AD;&#x516C;&#x53F8;&#x7B80;&#x79F0;&#x4E5F;&#x5728;&#x9ED1;&#x540D;&#x5355;&#x91CC;"></a>&#x5982;&#x4F55;&#x5224;&#x65AD;&#x516C;&#x53F8;&#x7B80;&#x79F0;&#x4E5F;&#x5728;&#x9ED1;&#x540D;&#x5355;&#x91CC;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送邮件采用什么方法？-为什么yagmail我设置了不能发送邮件"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x53D1;&#x9001;&#x90AE;&#x4EF6;&#x91C7;&#x7528;&#x4EC0;&#x4E48;&#x65B9;&#x6CD5;&#xFF1F;-&#x4E3A;&#x4EC0;&#x4E48;yagmail&#x6211;&#x8BBE;&#x7F6E;&#x4E86;&#x4E0D;&#x80FD;&#x53D1;&#x9001;&#x90AE;&#x4EF6;" class="headerlink" title="&#x53D1;&#x9001;&#x90AE;&#x4EF6;&#x91C7;&#x7528;&#x4EC0;&#x4E48;&#x65B9;&#x6CD5;&#xFF1F;  &#x4E3A;&#x4EC0;&#x4E48;yagmail&#x6211;&#x8BBE;&#x7F6E;&#x4E86;&#x4E0D;&#x80FD;&#x53D1;&#x9001;&#x90AE;&#x4EF6;"></a>&#x53D1;&#x9001;&#x90AE;&#x4EF6;&#x91C7;&#x7528;&#x4EC0;&#x4E48;&#x65B9;&#x6CD5;&#xFF1F;  &#x4E3A;&#x4EC0;&#x4E48;yagmail&#x6211;&#x8BBE;&#x7F6E;&#x4E86;&#x4E0D;&#x80FD;&#x53D1;&#x9001;&#x90AE;&#x4EF6;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么我的脚本在ubunt上不能运行，报错的地方返回None-type，而在mac上可以运行？"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x6211;&#x7684;&#x811A;&#x672C;&#x5728;ubunt&#x4E0A;&#x4E0D;&#x80FD;&#x8FD0;&#x884C;&#xFF0C;&#x62A5;&#x9519;&#x7684;&#x5730;&#x65B9;&#x8FD4;&#x56DE;None-type&#xFF0C;&#x800C;&#x5728;mac&#x4E0A;&#x53EF;&#x4EE5;&#x8FD0;&#x884C;&#xFF1F;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x6211;&#x7684;&#x811A;&#x672C;&#x5728;ubunt&#x4E0A;&#x4E0D;&#x80FD;&#x8FD0;&#x884C;&#xFF0C;&#x62A5;&#x9519;&#x7684;&#x5730;&#x65B9;&#x8FD4;&#x56DE;None type&#xFF0C;&#x800C;&#x5728;mac&#x4E0A;&#x53EF;&#x4EE5;&#x8FD0;&#x884C;&#xFF1F;"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x6211;&#x7684;&#x811A;&#x672C;&#x5728;ubunt&#x4E0A;&#x4E0D;&#x80FD;&#x8FD0;&#x884C;&#xFF0C;&#x62A5;&#x9519;&#x7684;&#x5730;&#x65B9;&#x8FD4;&#x56DE;None type&#xFF0C;&#x800C;&#x5728;mac&#x4E0A;&#x53EF;&#x4EE5;&#x8FD0;&#x884C;&#xFF1F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么邮箱发送，本地mac端可以，而服务器ubuntu上就不可以"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x90AE;&#x7BB1;&#x53D1;&#x9001;&#xFF0C;&#x672C;&#x5730;mac&#x7AEF;&#x53EF;&#x4EE5;&#xFF0C;&#x800C;&#x670D;&#x52A1;&#x5668;ubuntu&#x4E0A;&#x5C31;&#x4E0D;&#x53EF;&#x4EE5;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x90AE;&#x7BB1;&#x53D1;&#x9001;&#xFF0C;&#x672C;&#x5730;mac&#x7AEF;&#x53EF;&#x4EE5;&#xFF0C;&#x800C;&#x670D;&#x52A1;&#x5668;ubuntu&#x4E0A;&#x5C31;&#x4E0D;&#x53EF;&#x4EE5;?"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x90AE;&#x7BB1;&#x53D1;&#x9001;&#xFF0C;&#x672C;&#x5730;mac&#x7AEF;&#x53EF;&#x4EE5;&#xFF0C;&#x800C;&#x670D;&#x52A1;&#x5668;ubuntu&#x4E0A;&#x5C31;&#x4E0D;&#x53EF;&#x4EE5;?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脚本定时启动，可以什么方法实现？"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x811A;&#x672C;&#x5B9A;&#x65F6;&#x542F;&#x52A8;&#xFF0C;&#x53EF;&#x4EE5;&#x4EC0;&#x4E48;&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#xFF1F;" class="headerlink" title="&#x811A;&#x672C;&#x5B9A;&#x65F6;&#x542F;&#x52A8;&#xFF0C;&#x53EF;&#x4EE5;&#x4EC0;&#x4E48;&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#xFF1F;"></a>&#x811A;&#x672C;&#x5B9A;&#x65F6;&#x542F;&#x52A8;&#xFF0C;&#x53EF;&#x4EE5;&#x4EC0;&#x4E48;&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#xFF1F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#crontab为什么运行了我的python脚本，但是没输出"><span class="nav-number">6.</span> <span class="nav-text"><a href="#crontab&#x4E3A;&#x4EC0;&#x4E48;&#x8FD0;&#x884C;&#x4E86;&#x6211;&#x7684;python&#x811A;&#x672C;&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x8F93;&#x51FA;" class="headerlink" title="crontab&#x4E3A;&#x4EC0;&#x4E48;&#x8FD0;&#x884C;&#x4E86;&#x6211;&#x7684;python&#x811A;&#x672C;&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x8F93;&#x51FA;"></a>crontab&#x4E3A;&#x4EC0;&#x4E48;&#x8FD0;&#x884C;&#x4E86;&#x6211;&#x7684;python&#x811A;&#x672C;&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x8F93;&#x51FA;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么有的文章里说，执行shell脚本，需要赋予脚本可执行权限"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x6709;&#x7684;&#x6587;&#x7AE0;&#x91CC;&#x8BF4;&#xFF0C;&#x6267;&#x884C;shell&#x811A;&#x672C;&#xFF0C;&#x9700;&#x8981;&#x8D4B;&#x4E88;&#x811A;&#x672C;&#x53EF;&#x6267;&#x884C;&#x6743;&#x9650;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x6709;&#x7684;&#x6587;&#x7AE0;&#x91CC;&#x8BF4;&#xFF0C;&#x6267;&#x884C;shell&#x811A;&#x672C;&#xFF0C;&#x9700;&#x8981;&#x8D4B;&#x4E88;&#x811A;&#x672C;&#x53EF;&#x6267;&#x884C;&#x6743;&#x9650;"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x6709;&#x7684;&#x6587;&#x7AE0;&#x91CC;&#x8BF4;&#xFF0C;&#x6267;&#x884C;shell&#x811A;&#x672C;&#xFF0C;&#x9700;&#x8981;&#x8D4B;&#x4E88;&#x811A;&#x672C;&#x53EF;&#x6267;&#x884C;&#x6743;&#x9650;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经验"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x7ECF;&#x9A8C;" class="headerlink" title="&#x7ECF;&#x9A8C;"></a>&#x7ECF;&#x9A8C;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何判断公司简称也在黑名单里"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5982;&#x4F55;&#x5224;&#x65AD;&#x516C;&#x53F8;&#x7B80;&#x79F0;&#x4E5F;&#x5728;&#x9ED1;&#x540D;&#x5355;&#x91CC;" class="headerlink" title="&#x5982;&#x4F55;&#x5224;&#x65AD;&#x516C;&#x53F8;&#x7B80;&#x79F0;&#x4E5F;&#x5728;&#x9ED1;&#x540D;&#x5355;&#x91CC;"></a>&#x5982;&#x4F55;&#x5224;&#x65AD;&#x516C;&#x53F8;&#x7B80;&#x79F0;&#x4E5F;&#x5728;&#x9ED1;&#x540D;&#x5355;&#x91CC;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送邮件采用什么方法？-为什么yagmail我设置了不能发送邮件"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x53D1;&#x9001;&#x90AE;&#x4EF6;&#x91C7;&#x7528;&#x4EC0;&#x4E48;&#x65B9;&#x6CD5;&#xFF1F;-&#x4E3A;&#x4EC0;&#x4E48;yagmail&#x6211;&#x8BBE;&#x7F6E;&#x4E86;&#x4E0D;&#x80FD;&#x53D1;&#x9001;&#x90AE;&#x4EF6;" class="headerlink" title="&#x53D1;&#x9001;&#x90AE;&#x4EF6;&#x91C7;&#x7528;&#x4EC0;&#x4E48;&#x65B9;&#x6CD5;&#xFF1F;  &#x4E3A;&#x4EC0;&#x4E48;yagmail&#x6211;&#x8BBE;&#x7F6E;&#x4E86;&#x4E0D;&#x80FD;&#x53D1;&#x9001;&#x90AE;&#x4EF6;"></a>&#x53D1;&#x9001;&#x90AE;&#x4EF6;&#x91C7;&#x7528;&#x4EC0;&#x4E48;&#x65B9;&#x6CD5;&#xFF1F;  &#x4E3A;&#x4EC0;&#x4E48;yagmail&#x6211;&#x8BBE;&#x7F6E;&#x4E86;&#x4E0D;&#x80FD;&#x53D1;&#x9001;&#x90AE;&#x4EF6;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么我的脚本在ubunt上不能运行，报错的地方返回None-type，而在mac上可以运行？"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x6211;&#x7684;&#x811A;&#x672C;&#x5728;ubunt&#x4E0A;&#x4E0D;&#x80FD;&#x8FD0;&#x884C;&#xFF0C;&#x62A5;&#x9519;&#x7684;&#x5730;&#x65B9;&#x8FD4;&#x56DE;None-type&#xFF0C;&#x800C;&#x5728;mac&#x4E0A;&#x53EF;&#x4EE5;&#x8FD0;&#x884C;&#xFF1F;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x6211;&#x7684;&#x811A;&#x672C;&#x5728;ubunt&#x4E0A;&#x4E0D;&#x80FD;&#x8FD0;&#x884C;&#xFF0C;&#x62A5;&#x9519;&#x7684;&#x5730;&#x65B9;&#x8FD4;&#x56DE;None type&#xFF0C;&#x800C;&#x5728;mac&#x4E0A;&#x53EF;&#x4EE5;&#x8FD0;&#x884C;&#xFF1F;"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x6211;&#x7684;&#x811A;&#x672C;&#x5728;ubunt&#x4E0A;&#x4E0D;&#x80FD;&#x8FD0;&#x884C;&#xFF0C;&#x62A5;&#x9519;&#x7684;&#x5730;&#x65B9;&#x8FD4;&#x56DE;None type&#xFF0C;&#x800C;&#x5728;mac&#x4E0A;&#x53EF;&#x4EE5;&#x8FD0;&#x884C;&#xFF1F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么邮箱发送，本地mac端可以，而服务器ubuntu上就不可以"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x90AE;&#x7BB1;&#x53D1;&#x9001;&#xFF0C;&#x672C;&#x5730;mac&#x7AEF;&#x53EF;&#x4EE5;&#xFF0C;&#x800C;&#x670D;&#x52A1;&#x5668;ubuntu&#x4E0A;&#x5C31;&#x4E0D;&#x53EF;&#x4EE5;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x90AE;&#x7BB1;&#x53D1;&#x9001;&#xFF0C;&#x672C;&#x5730;mac&#x7AEF;&#x53EF;&#x4EE5;&#xFF0C;&#x800C;&#x670D;&#x52A1;&#x5668;ubuntu&#x4E0A;&#x5C31;&#x4E0D;&#x53EF;&#x4EE5;?"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x90AE;&#x7BB1;&#x53D1;&#x9001;&#xFF0C;&#x672C;&#x5730;mac&#x7AEF;&#x53EF;&#x4EE5;&#xFF0C;&#x800C;&#x670D;&#x52A1;&#x5668;ubuntu&#x4E0A;&#x5C31;&#x4E0D;&#x53EF;&#x4EE5;?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脚本定时启动，可以什么方法实现？"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x811A;&#x672C;&#x5B9A;&#x65F6;&#x542F;&#x52A8;&#xFF0C;&#x53EF;&#x4EE5;&#x4EC0;&#x4E48;&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#xFF1F;" class="headerlink" title="&#x811A;&#x672C;&#x5B9A;&#x65F6;&#x542F;&#x52A8;&#xFF0C;&#x53EF;&#x4EE5;&#x4EC0;&#x4E48;&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#xFF1F;"></a>&#x811A;&#x672C;&#x5B9A;&#x65F6;&#x542F;&#x52A8;&#xFF0C;&#x53EF;&#x4EE5;&#x4EC0;&#x4E48;&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#xFF1F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#crontab为什么运行了我的python脚本，但是没输出"><span class="nav-number">6.</span> <span class="nav-text"><a href="#crontab&#x4E3A;&#x4EC0;&#x4E48;&#x8FD0;&#x884C;&#x4E86;&#x6211;&#x7684;python&#x811A;&#x672C;&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x8F93;&#x51FA;" class="headerlink" title="crontab&#x4E3A;&#x4EC0;&#x4E48;&#x8FD0;&#x884C;&#x4E86;&#x6211;&#x7684;python&#x811A;&#x672C;&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x8F93;&#x51FA;"></a>crontab&#x4E3A;&#x4EC0;&#x4E48;&#x8FD0;&#x884C;&#x4E86;&#x6211;&#x7684;python&#x811A;&#x672C;&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x8F93;&#x51FA;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么有的文章里说，执行shell脚本，需要赋予脚本可执行权限"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x6709;&#x7684;&#x6587;&#x7AE0;&#x91CC;&#x8BF4;&#xFF0C;&#x6267;&#x884C;shell&#x811A;&#x672C;&#xFF0C;&#x9700;&#x8981;&#x8D4B;&#x4E88;&#x811A;&#x672C;&#x53EF;&#x6267;&#x884C;&#x6743;&#x9650;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x6709;&#x7684;&#x6587;&#x7AE0;&#x91CC;&#x8BF4;&#xFF0C;&#x6267;&#x884C;shell&#x811A;&#x672C;&#xFF0C;&#x9700;&#x8981;&#x8D4B;&#x4E88;&#x811A;&#x672C;&#x53EF;&#x6267;&#x884C;&#x6743;&#x9650;"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x6709;&#x7684;&#x6587;&#x7AE0;&#x91CC;&#x8BF4;&#xFF0C;&#x6267;&#x884C;shell&#x811A;&#x672C;&#xFF0C;&#x9700;&#x8981;&#x8D4B;&#x4E88;&#x811A;&#x672C;&#x53EF;&#x6267;&#x884C;&#x6743;&#x9650;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#echo-e-“Hello-World-a”-为什么在命令行里运行正常，在脚本里就有-e"><span class="nav-number">8.</span> <span class="nav-text"><a href="#echo-e-&#x201C;Hello-World-a&#x201D;-&#x4E3A;&#x4EC0;&#x4E48;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x91CC;&#x8FD0;&#x884C;&#x6B63;&#x5E38;&#xFF0C;&#x5728;&#x811A;&#x672C;&#x91CC;&#x5C31;&#x6709;-e" class="headerlink" title="echo -e &#x201C;Hello World! \a&#x201D; &#x4E3A;&#x4EC0;&#x4E48;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x91CC;&#x8FD0;&#x884C;&#x6B63;&#x5E38;&#xFF0C;&#x5728;&#x811A;&#x672C;&#x91CC;&#x5C31;&#x6709;-e"></a>echo -e &#x201C;Hello World! \a&#x201D; &#x4E3A;&#x4EC0;&#x4E48;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x91CC;&#x8FD0;&#x884C;&#x6B63;&#x5E38;&#xFF0C;&#x5728;&#x811A;&#x672C;&#x91CC;&#x5C31;&#x6709;-e</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经验"><span class="nav-number">9.</span> <span class="nav-text"><a href="#&#x7ECF;&#x9A8C;" class="headerlink" title="&#x7ECF;&#x9A8C;"></a>&#x7ECF;&#x9A8C;</span></a></li></ol></div>
             
 
           </div>
@@ -759,7 +767,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">26.9k</span>
+    <span title="Site words total count">28.5k</span>
   
 </div>
 

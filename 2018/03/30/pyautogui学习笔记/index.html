@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这是《Python编程快速上手 让繁琐工作自动化》第18章的内容和课后习题 程序直接控制键盘和鼠标。这些程序可以控制其他应用，向它们发送虚拟的击键和鼠标点击，就像你自己坐在计算机前与应用交互一样。这种技术被称为“图形用户界面自动化”，或简称“GUI自动化” 请将 GUI 自动化看成是对一个机械臂编程。你可以对机械臂编程，让它敲键盘 或移动鼠标。对于涉及许多无脑点击或填表的任务，这种技术特别有用。也">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hangyi">
+<meta property="og:url" content="https://hangyi.github.io/2018/03/30/pyautogui学习笔记/index.html">
+<meta property="og:site_name" content="Hangyi">
+<meta property="og:description" content="这是《Python编程快速上手 让繁琐工作自动化》第18章的内容和课后习题 程序直接控制键盘和鼠标。这些程序可以控制其他应用，向它们发送虚拟的击键和鼠标点击，就像你自己坐在计算机前与应用交互一样。这种技术被称为“图形用户界面自动化”，或简称“GUI自动化” 请将 GUI 自动化看成是对一个机械臂编程。你可以对机械臂编程，让它敲键盘 或移动鼠标。对于涉及许多无脑点击或填表的任务，这种技术特别有用。也">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-30T16:23:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hangyi">
+<meta name="twitter:description" content="这是《Python编程快速上手 让繁琐工作自动化》第18章的内容和课后习题 程序直接控制键盘和鼠标。这些程序可以控制其他应用，向它们发送虚拟的击键和鼠标点击，就像你自己坐在计算机前与应用交互一样。这种技术被称为“图形用户界面自动化”，或简称“GUI自动化” 请将 GUI 自动化看成是对一个机械臂编程。你可以对机械臂编程，让它敲键盘 或移动鼠标。对于涉及许多无脑点击或填表的任务，这种技术特别有用。也">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://hangyi.github.io/2018/03/30/pyautogui学习笔记/"/>
+
+
+
+
+
+  <title> | Hangyi</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hangyi</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以大多数人的努力程度之低，根本轮不到拼天分。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tag"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hangyi.github.io/2018/03/30/pyautogui学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hangyi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hangyi">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-30T00:00:00+08:00">
+                2018-03-30
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-31T00:23:28+08:00">
+                2018-03-31
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/30/pyautogui学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/30/pyautogui学习笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这是《Python编程快速上手 让繁琐工作自动化》第18章的内容和课后习题</p>
+<p>程序直接控制键盘和鼠标。这些程序可以控制其他应用，向它们发送虚拟的击键和鼠标点击，就像你自己坐在计算机前与应用交互一样。这种技术被称为“图形用户界面自动化”，或简称“GUI自动化”</p>
+<p>请将 GUI 自动化看成是对一个机械臂编程。你可以对机械臂编程，让它敲键盘 或移动鼠标。对于涉及许多无脑点击或填表的任务，这种技术特别有用。也可以用在自动化测试方面。</p>
+<p>pyautogui模块包含了一些函数，可以模拟鼠标移动、按键和滚动鼠标滚林</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>pyautogui 模块可以向 Windows、OS X 和 Linux 发送虚拟按键和鼠标点击。根据你使用的操作系统，在安装 pyautogui 之前，可能需要安装一些其他模块（称为 依赖关系）。</p>
+<p>在 Windows 上，不需要安装其他模块。</p>
+<p>在 OS X 上，运行 sudo pip3 install pyobjc-framework-Quartz，sudo pip3 install pyobjc-core，然后 sudo pip3 install pyobjc。</p>
+<p>在 Linux 上，运行 sudo pip3 install python3-xlib，sudo apt-get install scrot，sudo apt-get install python3-tk ， 以及 sudo apt-get install python3-dev （ Scrot 是 PyAutoGUI 使用的屏幕快照程序）。</p>
+<p>在这些依赖安装后，运行 pip install pyautogui（或在 OS X 和 Linux 上运行 pip3）， 安装 pyautogui。</p>
+<h2 id="PyAutoGui常用函数"><a href="#PyAutoGui常用函数" class="headerlink" title="PyAutoGui常用函数"></a>PyAutoGui常用函数</h2><p>pyautogui.size() 返回当前屏幕分辨率</p>
+<p>pyautogui.position()获取鼠标的位置</p>
+<p>moveTo（x，y）将鼠标移动到指定的 x、y 坐标。</p>
+<p>moveRel（xOffset，yOffset）相对于当前位置移动鼠标。</p>
+<p>dragTo（x，y）按下左键移动鼠标。</p>
+<p>dragRel（xOffset，yOffset）按下左键，相对于当前位置移动鼠标。</p>
+<p>click（x，y，button）模拟点击（默认是左键）。</p>
+<p>rightClick() 模拟右键点击。</p>
+<p>middleClick() 模拟中键点击。</p>
+<p>doubleClick() 模拟左键双击。</p>
+<p>mouseDown（x，y，button）模拟在 x、y 处按下指定鼠标按键。</p>
+<p>mouseUp（x，y，button）模拟在 x、y 处释放指定键。</p>
+<p>scroll（units）模拟滚动滚轮。正参数表示向上滚动，负参数表示向下滚动。</p>
+<p>typewrite（message）键入给定消息字符串中的字符。</p>
+<p>typewrite（[key1，key2，key3]）键入给定键字符串。</p>
+<p>press（key）按下并释放给定键。</p>
+<p>keyDown（key）模拟按下给定键。</p>
+<p>keyUp（key）模拟释放给定键。</p>
+<p>hotkey（[key1，key2，key3]）模拟按顺序按下给定键字符串，然后以相反的顺 序释放。</p>
+<p>screenshot() 返回屏幕快照的 Image 对象。</p>
+<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><p>1．如何触发 pyautogui 的失效保护来停止程序？<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">将鼠标移到屏幕左上角，这将导致pyautogui产生pyautogui.FailSafeException异常</span><br></pre></td></tr></table></figure></p>
+<p>2．什么函数返回当前的分辨率？ </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyautogui.size()</span><br></pre></td></tr></table></figure>
+<p>3．什么函数返回鼠标当前位置的坐标？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyautogui.position()</span><br></pre></td></tr></table></figure>
+<p>4．pyautogui.moveTo() 和 pyautogui.moveRel() 函数之间的区别是什么？<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pyautogui.moveTo()  <span class="comment"># 鼠标移动到指定位置</span></span><br><span class="line">pyautogui.moveRel() <span class="comment"># 相对于当前的位置移动鼠标</span></span><br></pre></td></tr></table></figure></p>
+<p>5．什么函数用于拖放鼠标？<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pyautogui.dragTo()  <span class="comment"># 将鼠标拖动到新的位置</span></span><br><span class="line">pyautogui.dragRel() <span class="comment"># 将鼠标拖动到相对当前位置的位置</span></span><br></pre></td></tr></table></figure></p>
+<p>6．调用什么函数将替你键入字符串”Hello world!”？<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyautogui.typewrite(<span class="string">'Hello world'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>7．如何模拟按下向左键这样的特殊键？<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyautogui.typewrite([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'left'</span>, <span class="string">'left'</span>, <span class="string">'X'</span>, <span class="string">'Y'</span>]) <span class="comment"># out: XYab</span></span><br></pre></td></tr></table></figure></p>
+<p>8．如何将当前屏幕的内容保存为图形文件并命名为 screenshot.png？<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyautogui.locateOnScreen(<span class="string">'submit.png'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>9．什么代码能够设置每次 pyautogui 函数调用后暂停两秒钟？<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">time.sleep(<span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="自动填表程序"><a href="#自动填表程序" class="headerlink" title="自动填表程序"></a>自动填表程序</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># formFiler.py - Automatically fills in the form.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pyautogui, time</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set these to the correct coordinates for your computer.your</span></span><br><span class="line"></span><br><span class="line">nameFiled =(<span class="number">674</span>, <span class="number">342</span>)</span><br><span class="line">submitButton = (<span class="number">659</span>, <span class="number">819</span>)</span><br><span class="line">submitButtonColor = (<span class="number">74</span>, <span class="number">139</span>, <span class="number">245</span>)</span><br><span class="line">submitAnotherLink = (<span class="number">761</span>, <span class="number">258</span>)</span><br><span class="line"></span><br><span class="line">formData = [&#123;<span class="string">'name'</span>: <span class="string">'Alice'</span>, <span class="string">'fear'</span>: <span class="string">'eavesdroppers'</span>, <span class="string">'source'</span>: <span class="string">'wand'</span>,</span><br><span class="line">  <span class="string">'robocop'</span>: <span class="number">4</span>, <span class="string">'comments'</span>: <span class="string">'Tell Bob I said hi.'</span>&#125;,</span><br><span class="line">  &#123;<span class="string">'name'</span>: <span class="string">'Bob'</span>, <span class="string">'fear'</span>: <span class="string">'bees'</span>, <span class="string">'source'</span>: <span class="string">'amulet'</span>, <span class="string">'robocop'</span>: <span class="number">4</span>,</span><br><span class="line">  <span class="string">'comments'</span>: <span class="string">'n/a'</span>&#125;,</span><br><span class="line">  &#123;<span class="string">'name'</span>: <span class="string">'Carol'</span>, <span class="string">'fear'</span>: <span class="string">'puppets'</span>, <span class="string">'source'</span>: <span class="string">'crystal ball'</span>, </span><br><span class="line">  <span class="string">'robocop'</span>: <span class="number">1</span>, <span class="string">'comments'</span>: <span class="string">'Please take the puppets out of the\</span></span><br><span class="line"><span class="string">  break room.'</span>&#125;,</span><br><span class="line">  &#123;<span class="string">'name'</span>: <span class="string">'Alex Murphy'</span>, <span class="string">'fear'</span>: <span class="string">'ED-209'</span>, <span class="string">'source'</span>: <span class="string">'money'</span>,</span><br><span class="line">  <span class="string">'robocop'</span>: <span class="number">5</span>, <span class="string">'comments'</span>: <span class="string">'Protect the innocent. Serve the public\</span></span><br><span class="line"><span class="string">  trust. Uphold the law.'</span>&#125;,</span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line">pyautogui.PAUSE = <span class="number">0.5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> person <span class="keyword">in</span> formData:</span><br><span class="line">    <span class="comment"># Give the user a chancee to kill the script.</span></span><br><span class="line">    print(<span class="string">'&gt;&gt;&gt; 5 SECOND PAUSE TO LET USER PRESS CTRL-C &lt;&lt;&lt;'</span>)</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Wait until the form page has loaded.</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> pyautogui.pixelMatchesColor(submitButton[<span class="number">0</span>], submitButton[<span class="number">1</span>],</span><br><span class="line">        submitButtonColor):</span><br><span class="line">        time.sleep(<span class="number">0.5</span>)</span><br><span class="line">    </span><br><span class="line">    print(<span class="string">'Enter %s info...'</span> % (person[<span class="string">'name'</span>]))</span><br><span class="line">    pyautogui.click(nameFiled[<span class="number">0</span>], nameFiled[<span class="number">1</span>]) <span class="comment"># 让浏览器获得焦点</span></span><br><span class="line">    pyautogui.click(nameFiled[<span class="number">0</span>], nameFiled[<span class="number">1</span>]) <span class="comment"># 让Name输入栏获得焦点</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Fill out the Name field.</span></span><br><span class="line">    pyautogui.typewrite(person[<span class="string">'name'</span>] + <span class="string">'\t'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Fill out the Freatest Fear(s) field. </span></span><br><span class="line">    pyautogui.typewrite(person[<span class="string">'fear'</span>] + <span class="string">'\t'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Fill out the Source of Wizard Powers field. </span></span><br><span class="line">    <span class="keyword">if</span> person[<span class="string">'source'</span>] == <span class="string">'wand'</span>:</span><br><span class="line">        pyautogui.typewrite([<span class="string">'down'</span>, <span class="string">'down'</span>, <span class="string">'enter'</span>, <span class="string">'\t'</span>])</span><br><span class="line">    <span class="keyword">elif</span> person[<span class="string">'source'</span>] == <span class="string">'amulet'</span>:</span><br><span class="line">        pyautogui.typewrite([<span class="string">'down'</span>, <span class="string">'down'</span>, <span class="string">'down'</span>, <span class="string">'enter'</span>, <span class="string">'\t'</span>])</span><br><span class="line">    <span class="keyword">elif</span> person[<span class="string">'source'</span>] == <span class="string">'crystal ball'</span>:</span><br><span class="line">        pyautogui.typewrite([<span class="string">'down'</span>, <span class="string">'down'</span>, <span class="string">'down'</span>, <span class="string">'down'</span>, <span class="string">'enter'</span>, <span class="string">'\t'</span>]) </span><br><span class="line">    <span class="keyword">elif</span> person[<span class="string">'source'</span>] == <span class="string">'money'</span>:</span><br><span class="line">        pyautogui.typewrite([<span class="string">'down'</span>, <span class="string">'down'</span>, <span class="string">'down'</span>, <span class="string">'down'</span>, <span class="string">'down'</span>, <span class="string">'enter'</span>, <span class="string">'\t'</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Fill out the RoboCop field</span></span><br><span class="line">    <span class="keyword">if</span> person[<span class="string">'robocop'</span>] == <span class="number">1</span>:</span><br><span class="line">        pyautogui.typewrite([<span class="string">' '</span>, <span class="string">'\t'</span>])</span><br><span class="line">    <span class="keyword">elif</span> person[<span class="string">'robocop'</span>] == <span class="number">2</span>:</span><br><span class="line">        pyautogui.typewrite([<span class="string">'right'</span>, <span class="string">'\t'</span>])</span><br><span class="line">    <span class="keyword">elif</span> person[<span class="string">'robocop'</span>] == <span class="number">3</span>:</span><br><span class="line">        pyautogui.typewrite([<span class="string">'right'</span>, <span class="string">'right'</span>, <span class="string">'\t'</span>])</span><br><span class="line">    <span class="keyword">elif</span> person[<span class="string">'robocop'</span>] == <span class="number">4</span>:</span><br><span class="line">        pyautogui.typewrite([<span class="string">'right'</span>, <span class="string">'right'</span>, <span class="string">'right'</span>, <span class="string">'\t'</span>])</span><br><span class="line">    <span class="keyword">elif</span> person[<span class="string">'robocop'</span>] == <span class="number">5</span>:</span><br><span class="line">        pyautogui.typewrite([<span class="string">'right'</span>, <span class="string">'right'</span>, <span class="string">'right'</span>, <span class="string">'right'</span>, <span class="string">'\t'</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Fill out the Additional Comments field. </span></span><br><span class="line">    pyautogui.typewrite(person[<span class="string">'comments'</span>] + <span class="string">'\t'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Click Submit. </span></span><br><span class="line">    pyautogui.press(<span class="string">'enter'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Wait until form page has loaded. </span></span><br><span class="line">    print(<span class="string">'Clicked Submit.'</span>)</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Click the Submit another response link.</span></span><br><span class="line">    pyautogui.click(submitAnotherLink[<span class="number">0</span>], submitAnotherLink[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+<p>参考资料</p>
+<p>《Python编程快速上手 让繁琐工作自动化》</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/27/前程无忧爬虫问题总结/" rel="next" title="前程无忧爬虫问题总结">
+                前程无忧爬虫问题总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Hangyi</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/Hangyi" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:sweat0909@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5B89;&#x88C5;" class="headerlink" title="&#x5B89;&#x88C5;"></a>&#x5B89;&#x88C5;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PyAutoGui常用函数"><span class="nav-number">2.</span> <span class="nav-text"><a href="#PyAutoGui&#x5E38;&#x7528;&#x51FD;&#x6570;" class="headerlink" title="PyAutoGui&#x5E38;&#x7528;&#x51FD;&#x6570;"></a>PyAutoGui&#x5E38;&#x7528;&#x51FD;&#x6570;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#习题"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4E60;&#x9898;" class="headerlink" title="&#x4E60;&#x9898;"></a>&#x4E60;&#x9898;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动填表程序"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x81EA;&#x52A8;&#x586B;&#x8868;&#x7A0B;&#x5E8F;" class="headerlink" title="&#x81EA;&#x52A8;&#x586B;&#x8868;&#x7A0B;&#x5E8F;"></a>&#x81EA;&#x52A8;&#x586B;&#x8868;&#x7A0B;&#x5E8F;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hangyi</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">28.5k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://hangyi.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://hangyi.github.io/2018/03/30/pyautogui学习笔记/';
+          this.page.identifier = '2018/03/30/pyautogui学习笔记/';
+          this.page.title = '';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://hangyi.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
